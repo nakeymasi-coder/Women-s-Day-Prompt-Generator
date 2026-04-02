@@ -1,0 +1,2731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlamorousGrammyGlowUp – Women’s Day Prompt Generator</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#121a31;
+      --panel2:#182342;
+      --line:#2d3c6a;
+      --text:#f5f7ff;
+      --muted:#b7c1e0;
+      --blue:#4f46e5;
+      --gold:#f59e0b;
+      --white:#ffffff;
+      --danger:#ef4444;
+      --success:#22c55e;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(79,70,229,.22), transparent 34%),
+        radial-gradient(circle at top right, rgba(245,158,11,.14), transparent 28%),
+        linear-gradient(180deg, #08101f 0%, #0b1020 100%);
+      min-height:100vh;
+    }
+    .wrap{
+      max-width:1500px;
+      margin:0 auto;
+      padding:28px 18px 70px;
+    }
+    .hero{
+      background:linear-gradient(135deg, rgba(79,70,229,.22), rgba(245,158,11,.12));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:26px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      margin-bottom:22px;
+    }
+    .brand{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:10px;
+    }
+    .brand h1{
+      margin:0;
+      font-size:clamp(1.5rem,2vw,2.4rem);
+      line-height:1.1;
+      letter-spacing:.2px;
+      text-shadow:
+        0 0 10px rgba(79,70,229,.35),
+        0 0 18px rgba(79,70,229,.25),
+        0 0 26px rgba(245,158,11,.16);
+    }
+    .brand h1 span{
+      color:var(--gold);
+      text-shadow:
+        0 0 8px rgba(245,158,11,.45),
+        0 0 16px rgba(245,158,11,.28),
+        0 0 24px rgba(245,158,11,.18);
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      font-size:.92rem;
+    }
+    .hero p{
+      color:var(--muted);
+      margin:8px 0 0;
+      max-width:1050px;
+      line-height:1.55;
+    }
+
+    .marquee{
+      margin-top:14px;
+      overflow:hidden;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(90deg, rgba(79,70,229,.18), rgba(245,158,11,.14), rgba(79,70,229,.18));
+      box-shadow:var(--shadow);
+    }
+    .marquee-track{
+      display:inline-block;
+      white-space:nowrap;
+      min-width:200%;
+      padding:10px 0;
+      font-weight:800;
+      color:#eef2ff;
+      animation:marqueeMove 22s linear infinite;
+    }
+    .marquee-track span{
+      display:inline-block;
+      padding-right:40px;
+    }
+    @keyframes marqueeMove{
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
+    }
+
+    .toolbar{
+      display:grid;
+      grid-template-columns:repeat(6,minmax(0,1fr));
+      gap:12px;
+      margin:18px 0 0;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+    .card{
+      grid-column:span 4;
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+    .card.wide{grid-column:span 6}
+    .card.full{grid-column:1/-1}
+    .card h2{
+      margin:0 0 8px;
+      font-size:1.02rem;
+      color:var(--gold);
+    }
+    .card p.note{
+      margin:0 0 12px;
+      color:var(--muted);
+      font-size:.9rem;
+      line-height:1.45;
+    }
+
+    .field{
+      margin-bottom:12px;
+    }
+    label{
+      display:block;
+      font-size:.9rem;
+      font-weight:700;
+      margin-bottom:7px;
+      color:#eef2ff;
+    }
+    .hint{
+      font-size:.8rem;
+      color:var(--muted);
+      margin-top:6px;
+      line-height:1.4;
+    }
+
+    input[type="text"], textarea, select{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:#0c1429;
+      color:var(--text);
+      padding:12px 14px;
+      outline:none;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+    }
+    select[multiple]{
+      min-height:180px;
+      padding:8px;
+    }
+    textarea{
+      min-height:148px;
+      resize:vertical;
+      line-height:1.45;
+    }
+    input[type="text"]:focus, textarea:focus, select:focus{
+      border-color:rgba(245,158,11,.7);
+      box-shadow:0 0 0 3px rgba(245,158,11,.12);
+    }
+
+    .two{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
+    .three{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+    }
+
+    .btn{
+      width:100%;
+      border:0;
+      border-radius:14px;
+      padding:13px 14px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.18s ease;
+      letter-spacing:.2px;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{
+      background:linear-gradient(135deg,#1339b8,#2456ff);
+      color:#fff;
+    }
+    .btn.gold{
+      background:linear-gradient(135deg,#c9981e,#f3be45);
+      color:#171717;
+    }
+    .btn.ghost{
+      background:linear-gradient(135deg,#06080f,#111827);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .btn.danger{
+      background:linear-gradient(135deg,#06080f,#111827);
+      color:#fff;
+    }
+    .btn.success{
+      background:linear-gradient(135deg,#1339b8,#2456ff);
+      color:#fff;
+    }
+
+    .small-actions{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:8px;
+    }
+    .pill{
+      background:rgba(255,255,255,.06);
+      color:#eef2ff;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:.8rem;
+    }
+
+    .outputs{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+    .outbox{
+      background:#0a1327;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:14px;
+    }
+    .outbox h3{
+      margin:0 0 10px;
+      color:var(--gold);
+      font-size:1rem;
+    }
+    .outbox textarea{
+      min-height:360px;
+      background:#08101f;
+    }
+
+    .footer-note{
+      color:var(--muted);
+      line-height:1.5;
+      font-size:.9rem;
+    }
+
+    .scroll-fab{
+      position:fixed;
+      right:18px;
+      width:52px;
+      height:52px;
+      border:none;
+      border-radius:999px;
+      cursor:pointer;
+      z-index:999;
+      font-size:1.2rem;
+      font-weight:900;
+      color:#ffffff;
+      background:linear-gradient(135deg,#1339b8,#2456ff 55%,#f3be45);
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,.06),
+        0 0 12px rgba(36,86,255,.45),
+        0 0 24px rgba(243,190,69,.22);
+      transition:.18s ease;
+    }
+    .scroll-fab:hover{
+      transform:translateY(-2px) scale(1.03);
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,.08),
+        0 0 18px rgba(36,86,255,.55),
+        0 0 32px rgba(243,190,69,.32);
+    }
+    .scroll-up{bottom:92px}
+    .scroll-down{bottom:26px}
+
+    details.category-collapse{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      background:rgba(255,255,255,.02);
+      margin-bottom:14px;
+      overflow:hidden;
+    }
+    details.category-collapse summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 16px;
+      font-weight:800;
+      color:var(--gold);
+      background:rgba(255,255,255,.03);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    details.category-collapse summary::-webkit-details-marker{display:none}
+    .collapse-body{
+      padding:14px;
+    }
+    .lock-toggle{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      border-radius:999px;
+      padding:8px 12px;
+      font-weight:800;
+      cursor:pointer;
+      margin-bottom:10px;
+    }
+    .lock-toggle.locked{
+      background:linear-gradient(135deg,#c9981e,#f3be45);
+      color:#171717;
+    }
+    .history-wrap{
+      margin-top:16px;
+      background:#0a1327;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:14px;
+    }
+    .history-wrap h3{
+      margin:0 0 10px;
+      color:var(--gold);
+      font-size:1rem;
+    }
+    .history-list{
+      display:grid;
+      gap:10px;
+      max-height:260px;
+      overflow:auto;
+    }
+    .history-item{
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .history-item .meta{
+      color:var(--muted);
+      font-size:.8rem;
+      margin-bottom:6px;
+    }
+    .history-item .preview{
+      color:#eef2ff;
+      font-size:.85rem;
+      line-height:1.35;
+      white-space:pre-wrap;
+    }
+
+    @media (max-width:1200px){
+      .card{grid-column:span 6}
+      .toolbar{grid-template-columns:repeat(3,minmax(0,1fr))}
+    }
+    @media (max-width:900px){
+      .card,.card.wide{grid-column:1/-1}
+      .outputs{grid-template-columns:1fr}
+      .two,.three{grid-template-columns:1fr}
+      .toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width:560px){
+      .toolbar,.small-actions{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="brand">
+        <h1>GlamorousGrammyGlowUp <span>Women’s Day Prompt Generator</span></h1>
+        <div class="tag">Epic • Museum-Worthy • Scroll-Stopping • Photo + Video</div>
+      </div>
+      <p>
+        Build powerful International Women’s Day collage prompts with editorial beauty, activism, history, symbolism, floral softness, dramatic composition, and premium storytelling.
+        This generator creates a <strong>photo prompt</strong>, a <strong>video script prompt</strong>, and a <strong>solo jingle / song script prompt</strong>. It also bakes in variation so each render gets a distinct face, pose, and styling while keeping the same overall aesthetic.
+      </p>
+
+      <div class="marquee">
+        <div class="marquee-track">
+          <span>INSTANT DOWNLOAD • LUXURY PROMPTS • SCROLL-STOPPING VISUALS • WOMEN’S DAY MAGIC • GLOSSY 8K ENERGY •</span>
+          <span>INSTANT DOWNLOAD • LUXURY PROMPTS • SCROLL-STOPPING VISUALS • WOMEN’S DAY MAGIC • GLOSSY 8K ENERGY •</span>
+        </div>
+      </div>
+
+
+      <div class="toolbar">
+        <button class="btn primary" onclick="generatePrompts()">Generate Prompts</button>
+        <button class="btn gold" onclick="applySelectedPreset()">Apply Preset</button>
+        <button class="btn ghost" onclick="randomizeAll()">Randomize</button>
+        <button class="btn danger" onclick="clearAllFields()">Clear All</button>
+        <button class="btn success" onclick="copyText('photoPrompt')">Copy Photo Prompt</button>
+        <button class="btn success" onclick="copyText('videoPrompt')">Copy Video Prompt</button>
+        <button class="btn gold" onclick="savePromptHistory()">Save Prompt</button>
+        <button class="btn primary" onclick="generateThreeVariations()">3 More Variations</button>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card wide">
+        <h2>Preset System</h2>
+        <p class="note">Pick one of 15 built-in looks, then tweak anything you want.</p>
+        <div class="two">
+          <div class="field">
+            <label for="presetSelect">Preset</label>
+            <select id="presetSelect"></select>
+          </div>
+          <div class="field">
+            <label for="outputMode">Output Mode</label>
+            <select id="outputMode">
+              <option>Both Photo and Video</option>
+              <option>Photo Prompt Only</option>
+              <option>Video Script Prompt Only</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Core Subject</h2>
+        
+        <details class="category-collapse" open>
+          <summary>
+            <span>Core Subject</span>
+            <span>Open / Close</span>
+          </summary>
+          <div class="collapse-body">
+            <button class="lock-toggle" data-lock="coreSubject" onclick="toggleCategoryLock('coreSubject', this)">Lock Section</button>
+<div class="field">
+          <label for="mainHero">Main Hero Focus</label>
+          <select id="mainHero"></select>
+        </div>
+        <div class="field">
+          <label for="supportingFigures">Supporting Figures</label>
+          <select id="supportingFigures" multiple></select>
+          <div class="hint">Hold Ctrl or Cmd to pick more than one.</div>
+        </div>
+        <div class="field">
+          <label for="representation">Representation / Identity Focus</label>
+          <select id="representation" multiple></select>
+        </div>
+        <div class="field">
+          <label for="emotion">Emotion / Expression</label>
+          <select id="emotion" multiple></select>
+        </div>
+        <div class="field">
+          <label for="heroPose">Hero Pose</label>
+          <select id="heroPose"></select>
+        </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="card">
+        <h2>Composition + Story Layers</h2>
+        
+        <details class="category-collapse" open>
+          <summary>
+            <span>Composition + Story Layers</span>
+            <span>Open / Close</span>
+          </summary>
+          <div class="collapse-body">
+            <button class="lock-toggle" data-lock="compositionLayers" onclick="toggleCategoryLock('compositionLayers', this)">Lock Section</button>
+<div class="field">
+          <label for="composition">Collage Composition Style</label>
+          <select id="composition"></select>
+        </div>
+        <div class="field">
+          <label for="historical">Historical / Archival Layers</label>
+          <select id="historical" multiple></select>
+        </div>
+        <div class="field">
+          <label for="symbolic">Symbolic Elements</label>
+          <select id="symbolic" multiple></select>
+        </div>
+        <div class="field">
+          <label for="floral">Floral / Decorative Elements</label>
+          <select id="floral" multiple></select>
+        </div>
+        <div class="field">
+          <label for="backgroundStyle">Background Style</label>
+          <select id="backgroundStyle"></select>
+        </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="card">
+        <h2>Look + Feel</h2>
+        
+        <details class="category-collapse" open>
+          <summary>
+            <span>Look + Feel</span>
+            <span>Open / Close</span>
+          </summary>
+          <div class="collapse-body">
+            <button class="lock-toggle" data-lock="lookFeel" onclick="toggleCategoryLock('lookFeel', this)">Lock Section</button>
+<div class="field">
+          <label for="colorPalette">Color Palette</label>
+          <select id="colorPalette"></select>
+        </div>
+        <div class="field">
+          <label for="lightingStyle">Lighting Style</label>
+          <select id="lightingStyle"></select>
+        </div>
+        <div class="field">
+          <label for="shadowControl">Light & Shadow Control</label>
+          <select id="shadowControl"></select>
+        </div>
+        <div class="field">
+          <label for="textureFinish">Texture / Finish</label>
+          <select id="textureFinish" multiple></select>
+        </div>
+        <div class="field">
+          <label for="typographyStyle">Typography Style</label>
+          <select id="typographyStyle"></select>
+        </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="card wide">
+        <h2>Camera Control</h2>
+        
+        <details class="category-collapse" open>
+          <summary>
+            <span>Camera Control</span>
+            <span>Open / Close</span>
+          </summary>
+          <div class="collapse-body">
+            <button class="lock-toggle" data-lock="cameraControl" onclick="toggleCategoryLock('cameraControl', this)">Lock Section</button>
+<div class="three">
+          <div class="field">
+            <label for="cameraShot">Shot Type</label>
+            <select id="cameraShot"></select>
+          </div>
+          <div class="field">
+            <label for="cameraAngle">Camera Angle</label>
+            <select id="cameraAngle"></select>
+          </div>
+          <div class="field">
+            <label for="lensStyle">Lens / Depth Style</label>
+            <select id="lensStyle"></select>
+          </div>
+        </div>
+        <div class="three">
+          <div class="field">
+            <label for="cameraMotion">Video Camera Motion</label>
+            <select id="cameraMotion"></select>
+          </div>
+          <div class="field">
+            <label for="editStyle">Video Edit Style</label>
+            <select id="editStyle"></select>
+          </div>
+          <div class="field">
+            <label for="scenePacing">Video Pacing</label>
+            <select id="scenePacing"></select>
+          </div>
+        </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="card wide">
+        <h2>Theme + Art Direction</h2>
+        
+        <details class="category-collapse" open>
+          <summary>
+            <span>Theme + Art Direction</span>
+            <span>Open / Close</span>
+          </summary>
+          <div class="collapse-body">
+            <button class="lock-toggle" data-lock="themeDirection" onclick="toggleCategoryLock('themeDirection', this)">Lock Section</button>
+<div class="two">
+          <div class="field">
+            <label for="empowermentTheme">Empowerment Theme</label>
+            <select id="empowermentTheme" multiple></select>
+          </div>
+          <div class="field">
+            <label for="communityTheme">Community Theme</label>
+            <select id="communityTheme" multiple></select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="artStyleBlend">Art Style Blend</label>
+          <select id="artStyleBlend" multiple></select>
+        </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="card wide">
+        <h2>Music / Funnel Controls</h2>
+        
+        <details class="category-collapse" open>
+          <summary>
+            <span>Music / Funnel Controls</span>
+            <span>Open / Close</span>
+          </summary>
+          <div class="collapse-body">
+            <button class="lock-toggle" data-lock="musicFunnel" onclick="toggleCategoryLock('musicFunnel', this)">Lock Section</button>
+<div class="two">
+          <div class="field">
+            <label for="songGenre">Song Genre Freedom</label>
+            <select id="songGenre" multiple>
+              <option>None</option>
+              <option>Cinematic soul</option>
+              <option>Gospel-pop</option>
+              <option>House glam</option>
+              <option>Luxury R&amp;B</option>
+              <option>Orchestral empowerment</option>
+              <option>Pop anthem</option>
+              <option>Spoken word anthem</option>
+              <option>Trap-pop</option>
+            </select>
+            <div class="hint">Pick one or more music directions.</div>
+          </div>
+          <div class="field">
+            <label for="songCustom">Custom Song Direction</label>
+            <textarea id="songCustom" placeholder="Add your own genre, mood, audience, or music direction here."></textarea>
+          </div>
+        </div>
+        <div class="three">
+          <div class="field">
+            <label for="weirdnessLevel">Weirdness</label>
+            <select id="weirdnessLevel">
+              <option>12%</option>
+              <option>28%</option>
+              <option>44%</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="styleInfluence">Style Influence</label>
+            <select id="styleInfluence">
+              <option>35%</option>
+              <option>55%</option>
+              <option>75%</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="audioInfluence">Audio Influence</label>
+            <select id="audioInfluence">
+              <option>25%</option>
+              <option>50%</option>
+              <option>70%</option>
+            </select>
+          </div>
+        </div>
+          </div>
+        </details>
+      </section>
+
+
+      <section class="card wide">
+        <h2>Text + Custom Details</h2>
+        
+        <details class="category-collapse" open>
+          <summary>
+            <span>Text + Custom Details</span>
+            <span>Open / Close</span>
+          </summary>
+          <div class="collapse-body">
+            <button class="lock-toggle" data-lock="textCustom" onclick="toggleCategoryLock('textCustom', this)">Lock Section</button>
+<div class="two">
+          <div class="field">
+            <label for="headlinePreset">Headline Preset</label>
+            <select id="headlinePreset"></select>
+          </div>
+          <div class="field">
+            <label for="quotePreset">Supporting Quote Preset</label>
+            <select id="quotePreset"></select>
+          </div>
+        </div>
+        <div class="two">
+          <div class="field">
+            <label for="mainHeadline">Main Headline</label>
+            <input type="text" id="mainHeadline" placeholder="Type your main headline here" />
+          </div>
+          <div class="field">
+            <label for="supportingQuote">Supporting Text / Quote</label>
+            <input type="text" id="supportingQuote" placeholder="Type your supporting line here" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="extraDetails">Extra Details</label>
+          <textarea id="extraDetails" placeholder="Add ethnicity, hair, fashion, symbols, historical references, protest sign wording, flowers, mood, or specific scene ideas. Example: Afrocentric beauty with natural hair, gold jewelry, raised fist, torn archival edges, museum poster energy."></textarea>
+          <div class="hint">Use this box for custom details the dropdowns don’t cover.</div>
+        </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="card full">
+        <h2>Generated Output</h2>
+        <div class="outputs">
+          <div class="outbox">
+            <h3>Photo Prompt</h3>
+            <textarea id="photoPrompt" placeholder="Your photo prompt will appear here..."></textarea>
+            <div class="small-actions">
+              <button class="btn success" onclick="copyText('photoPrompt')">Copy Photo Prompt</button>
+              <button class="btn ghost" onclick="selectOutput('photoPrompt')">Select Text</button>
+              <button class="btn ghost" onclick="downloadText('photoPrompt','womens-day-photo-prompt.txt')">Download TXT</button>
+            </div>
+          </div>
+          <div class="outbox">
+            <h3>Video Script Prompt</h3>
+            <textarea id="videoPrompt" placeholder="Your video script prompt will appear here..."></textarea>
+            <div class="small-actions">
+              <button class="btn success" onclick="copyText('videoPrompt')">Copy Video Prompt</button>
+              <button class="btn ghost" onclick="selectOutput('videoPrompt')">Select Text</button>
+              <button class="btn ghost" onclick="downloadText('videoPrompt','womens-day-video-script-prompt.txt')">Download TXT</button>
+            </div>
+          </div>
+          <div class="outbox">
+            <h3>Solo Jingle / Song Script</h3>
+            <textarea id="songPrompt" placeholder="Your solo jingle and song script prompt will appear here..."></textarea>
+            <div class="small-actions">
+              <button class="btn success" onclick="copyText('songPrompt')">Copy Song Prompt</button>
+              <button class="btn ghost" onclick="selectOutput('songPrompt')">Select Text</button>
+              <button class="btn ghost" onclick="downloadText('songPrompt','womens-day-song-script-prompt.txt')">Download TXT</button>
+            </div>
+          </div>
+          <div class="outbox">
+            <h3>Captions + Product Info</h3>
+            <textarea id="marketingPrompt" placeholder="Your captions and product info suggestions will appear here..."></textarea>
+            <div class="small-actions">
+              <button class="btn success" onclick="copyText('marketingPrompt')">Copy Marketing</button>
+              <button class="btn ghost" onclick="selectOutput('marketingPrompt')">Select Text</button>
+              <button class="btn ghost" onclick="downloadText('marketingPrompt','womens-day-marketing-copy.txt')">Download TXT</button>
+            </div>
+          </div>
+          <div class="outbox">
+            <h3>3 Prompt Variations</h3>
+            <textarea id="variationPrompt" placeholder="Your 3 extra prompt variations will appear here..."></textarea>
+            <div class="small-actions">
+              <button class="btn success" onclick="copyText('variationPrompt')">Copy Variations</button>
+              <button class="btn ghost" onclick="selectOutput('variationPrompt')">Select Text</button>
+              <button class="btn ghost" onclick="downloadText('variationPrompt','womens-day-3-variations.txt')">Download TXT</button>
+            </div>
+          </div>
+        </div>
+        <div class="history-wrap">
+          <h3>Prompt History</h3>
+          <div id="promptHistoryList" class="history-list">
+            <div class="history-item">
+              <div class="meta">No saved prompts yet.</div>
+              <div class="preview">Use the Save Prompt button after you generate something.</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="footer-note">
+          Built for GlamorousGrammyGlowUp. Premium collage prompts with history, softness, power, and fashion baked in. No dusty basic posters over here.
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <button class="scroll-fab scroll-up" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑</button>
+  <button class="scroll-fab scroll-down" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})" aria-label="Scroll to bottom">↓</button>
+
+  <script>
+    const fieldOptions = {
+      mainHero: [
+        "None",
+        "Afrocentric beauty queen portrait",
+        "Close-up beauty portrait with collage background",
+        "Community-centered women’s group",
+        "Cultural icon-inspired feminine portrait",
+        "Diverse trio of women standing together",
+        "Elegant woman surrounded by history",
+        "Feminine activist with raised fist",
+        "Full-body hero woman in commanding pose",
+        "Heroic women walking forward together",
+        "Modern sisterhood group portrait",
+        "Mother and daughter legacy portrait",
+        "Multi-generational women portrait",
+        "Museum-style women’s tribute centerpiece",
+        "Powerful Black woman editorial portrait",
+        "Regal goddess-like woman",
+        "Soft but powerful feminine portrait",
+        "Woman embracing another woman",
+        "Woman in profile with symbolic overlays",
+        "Woman leader speaking with confidence"
+      ],
+      supportingFigures: [
+        "None",
+        "Activists",
+        "Artists",
+        "Athletes",
+        "Caregivers",
+        "Daughters",
+        "Entrepreneurs",
+        "Friends embracing",
+        "Grandmothers",
+        "Mothers",
+        "Multi-generational women",
+        "Nurses",
+        "Students",
+        "Teachers",
+        "Women celebrating together",
+        "Women creating art",
+        "Women holding hands",
+        "Women holding signs",
+        "Women in modern fashion",
+        "Women marching"
+      ],
+      representation: [
+        "None",
+        "African American women",
+        "African women",
+        "Afro-Latina women",
+        "Asian women",
+        "Black women",
+        "Caribbean women",
+        "Curvy women",
+        "Diverse women of many backgrounds",
+        "Indigenous women",
+        "Latina women",
+        "Mature women",
+        "Middle Eastern women",
+        "Mixed-race women",
+        "Plus-size women",
+        "South Asian women",
+        "Southeast Asian women",
+        "Women in creative roles",
+        "Women in hijabs",
+        "Women with natural hair"
+      ],
+      emotion: [
+        "None",
+        "Bold",
+        "Calm",
+        "Confident",
+        "Determined",
+        "Emotional",
+        "Fierce",
+        "Hopeful",
+        "Intense gaze",
+        "Joyful",
+        "Loving",
+        "Proud",
+        "Reflective",
+        "Regal",
+        "Resilient",
+        "Sacred stillness",
+        "Serene",
+        "Soft smile",
+        "Triumphant",
+        "Warm laughter"
+      ],
+      heroPose: [
+        "None",
+        "Arms crossed",
+        "Chin lifted",
+        "Close-up face framing",
+        "Crowned portrait pose",
+        "Embracing another woman",
+        "Group linked arm-in-arm",
+        "Hand over heart",
+        "Hands on hips",
+        "Holding flowers",
+        "Holding protest sign",
+        "Looking directly into camera",
+        "Looking upward",
+        "Marching together",
+        "Over-the-shoulder pose",
+        "Raised fist",
+        "Reaching outward",
+        "Seated regal pose",
+        "Side profile",
+        "Standing tall facing forward"
+      ],
+      composition: [
+        "None",
+        "Central hero with surrounding mini-scenes",
+        "Dense layered storytelling collage",
+        "Documentary-meets-glam layout",
+        "Dynamic diagonal collage",
+        "Editorial magazine cover collage",
+        "Fine-art exhibition layout",
+        "Floating cutout collage",
+        "Hero trio with supporting scene fragments",
+        "Layered torn-paper montage",
+        "Legacy timeline collage",
+        "Mixed-scale portrait montage",
+        "Oversized center portrait with border details",
+        "Protest poster collage",
+        "Scrapbook-meets-luxury composition",
+        "Soft floral framed collage",
+        "Split-panel collage",
+        "Storybook collage composition",
+        "Symmetrical museum poster",
+        "Vertical tribute poster design"
+      ],
+      historical: [
+        "None",
+        "Aged parchment fragments",
+        "Archival newspaper clippings",
+        "Archive-stamp textures",
+        "Black-and-white protest photos",
+        "Civil rights protest energy",
+        "Collaged headlines about women’s rights",
+        "Documentary crowd imagery",
+        "Equality movement imagery",
+        "Handwritten notes",
+        "Historical rally scenes",
+        "Historical street scenes",
+        "Old paper textures",
+        "Old photo contact sheets",
+        "Protest sign fragments",
+        "Retro photo borders",
+        "Torn magazine pages",
+        "Typewritten feminist statements",
+        "Vintage women’s rights march photos",
+        "Voting rights references"
+      ],
+      symbolic: [
+        "None",
+        "Broken chains",
+        "Butterflies",
+        "Crowns",
+        "Doves",
+        "Floating ribbons",
+        "Flames of strength",
+        "Gold halos",
+        "Hearts",
+        "Light aura",
+        "Open hands",
+        "Paper tears",
+        "Protective circle motif",
+        "Radiant sunbursts",
+        "Raised fists",
+        "Sacred glow",
+        "Sparkles",
+        "Stars",
+        "Unity symbols",
+        "Venus symbols"
+      ],
+      floral: [
+        "None",
+        "Abstract petals",
+        "Blush roses",
+        "Blooming corners",
+        "Cherry blossoms",
+        "Deep red roses",
+        "Floral frame border",
+        "Floral halo",
+        "Flower crown",
+        "Garden collage accents",
+        "Gold botanical vines",
+        "Lavender stems",
+        "Magnolia blooms",
+        "Marigolds",
+        "Peonies",
+        "Petal rain",
+        "Romantic bouquet elements",
+        "Soft leaves",
+        "Sunflowers",
+        "Wildflowers"
+      ],
+      backgroundStyle: [
+        "None",
+        "Aged sepia texture",
+        "Bronze museum wall",
+        "City skyline haze",
+        "Deep teal editorial gradient",
+        "Documentary poster wall",
+        "Dreamy blush gradient",
+        "Dusty mauve haze",
+        "Gold and cream abstract field",
+        "Layered paper collage background",
+        "Light cream fine-art backdrop",
+        "Moody cinematic darkness",
+        "Painted mural background",
+        "Rich cocoa and gold backdrop",
+        "Rich jewel-tone backdrop",
+        "Soft cloudscape",
+        "Soft pink watercolor wash",
+        "Textured gallery wall",
+        "Vintage paper backdrop",
+        "Warm sunset sky"
+      ],
+      colorPalette: [
+        "None",
+        "Activist editorial monochrome with bold accents",
+        "Black excellence luxe tones",
+        "Black, white, cream, red accents",
+        "Blush pink, rose gold, cream, lavender",
+        "Deep brown, bronze, gold, cocoa",
+        "Deep teal, gold, jewel tones",
+        "Dusty rose, mauve, ivory, warm brown",
+        "Emerald, gold, cream, black",
+        "Mauve, peach, champagne, soft pink",
+        "Neutral sepia, cream, parchment, muted gold",
+        "Purple, magenta, fuchsia, pink",
+        "Rich burgundy, gold, cream, cocoa",
+        "Royal blue, gold, cream, cocoa",
+        "Soft feminine pastels with powerful contrast",
+        "Sunset orange, blush, bronze, deep brown",
+        "Warm cocoa, cream, blush, muted bronze",
+        "Warm gold, rose, ivory, soft plum",
+        "Weathered sepia, parchment, cocoa, soft cream",
+        "Wine, gold, cocoa, muted blush"
+      ],
+      lightingStyle: [
+        "None",
+        "Cinematic contrast lighting",
+        "Diffused fine-art lighting",
+        "Dramatic museum spotlight",
+        "Glossy beauty lighting",
+        "Golden hour radiance",
+        "Heavenly soft glow",
+        "High-end magazine lighting",
+        "Luminous editorial glow",
+        "Moody gallery lighting",
+        "Polished campaign lighting",
+        "Premium studio lighting",
+        "Sculpted portrait lighting",
+        "Soft romantic light",
+        "Sunset-lit collage glow",
+        "Warm emotional light",
+        "Backlit halo glow",
+        "Editorial side-light shaping",
+        "Museum-grade directional lighting",
+        "Soft spotlight with dark falloff"
+      ],
+      shadowControl: [
+        "None",
+        "Balanced soft shadows",
+        "Bold high-contrast shadows",
+        "Clean even light with minimal shadow",
+        "Deep dramatic shadow carving",
+        "Directional spotlight falloff",
+        "Editorial under-chin shadow shaping",
+        "Layered collage shadow depth",
+        "Low-key cinematic shadow mood",
+        "Moody side shadow sweep",
+        "Museum wall shadow projection",
+        "Paper overlap shadow realism",
+        "Portrait rim-light shadow contrast",
+        "Rich dimensional shadow pockets",
+        "Sculpted cheekbone shadows",
+        "Soft ambient shadowing",
+        "Soft edge feathered shadows",
+        "Strong silhouette shadow energy",
+        "Subtle realistic print shadows",
+        "Text and object cast shadows"
+      ],
+      textureFinish: [
+        "None",
+        "Canvas texture",
+        "Documentary photo grain",
+        "Fine-art print finish",
+        "Glossy editorial finish",
+        "Handmade collage texture",
+        "Layered shadow depth",
+        "Light ink texture",
+        "Magazine cutout texture",
+        "Matte poster finish",
+        "Mixed-media layering",
+        "Museum wall print texture",
+        "Paper overlap shadows",
+        "Photographic realism",
+        "Print-poster texture",
+        "Rich color saturation",
+        "Scrapbook texture",
+        "Soft blur transitions",
+        "Soft painterly texture",
+        "Torn paper edges"
+      ],
+      typographyStyle: [
+        "None",
+        "Bold uppercase editorial headline",
+        "Border text framing composition",
+        "Elegant script with serif pairing",
+        "Exhibition poster typography",
+        "Giant serif masthead",
+        "Handwritten quote accents",
+        "Large centered statement text",
+        "Luxury campaign typography",
+        "Magazine cover text layout",
+        "Minimal elegant title layout",
+        "Mixed serif and sans layout",
+        "Oversized text with layered collage",
+        "Protest poster lettering",
+        "Soft feminine script headline",
+        "Stacked bold headline blocks",
+        "Classic museum label typography",
+        "High-fashion masthead styling",
+        "Modern gallery title lockup",
+        "Statement serif with script flourishes"
+      ],
+      cameraShot: [
+        "None",
+        "Bust portrait crop",
+        "Close-up beauty crop",
+        "Collage detail macro shot",
+        "Editorial group portrait",
+        "Environmental portrait",
+        "Extreme close-up",
+        "Full-body fashion frame",
+        "Half-body portrait",
+        "Hero trio wide shot",
+        "Medium portrait",
+        "Mixed-scale collage framing",
+        "Poster-cover vertical shot",
+        "Scene-within-scene composition",
+        "Shoulder-up portrait",
+        "Symmetrical centered frame",
+        "Tall cinematic hero shot",
+        "Three-quarter portrait",
+        "Top-to-bottom exhibition poster frame",
+        "Wide mural composition"
+      ],
+      cameraAngle: [
+        "None",
+        "Dutch angle drama",
+        "Eye-level editorial",
+        "Front-facing symmetrical",
+        "Heroic low angle",
+        "Intimate close frontal angle",
+        "Layered collage overhead angle",
+        "Left three-quarter angle",
+        "Over-the-shoulder angle",
+        "Profile angle",
+        "Right three-quarter angle",
+        "Slight high angle",
+        "Slight low angle",
+        "Straight-on poster angle",
+        "Top-down collage angle",
+        "Uplifted gaze angle",
+        "Wide environmental angle",
+        "Worm’s-eye dramatic angle",
+        "Gallery wall display angle",
+        "Tilted magazine-cover angle"
+      ],
+      lensStyle: [
+        "None",
+        "50mm editorial realism",
+        "85mm portrait compression",
+        "Crisp high-detail lens look",
+        "Deep focus documentary look",
+        "Dreamy diffusion lens effect",
+        "Exhibition-grade sharpness",
+        "Fashion campaign clarity",
+        "Fine-art soft depth falloff",
+        "Macro texture emphasis",
+        "Medium-format luxury look",
+        "Mixed-focus collage realism",
+        "Poster-sharp front plane",
+        "Rich shallow depth of field",
+        "Soft edge vignette focus",
+        "Studio portrait lens look",
+        "Textured print realism lens",
+        "Ultra-clean premium lensing",
+        "Wide cinematic depth",
+        "Zoomed emotional portrait feel"
+      ],
+      cameraMotion: [
+        "None",
+        "Crane up reveal",
+        "Dolly in slowly",
+        "Floating collage drift",
+        "Gentle handheld realism",
+        "Heroic push-in",
+        "Lateral slide across layers",
+        "Orbit around the hero subject",
+        "Parallax paper-layer movement",
+        "Slow cinematic zoom",
+        "Slow rise from flowers to face",
+        "Subtle tilt up",
+        "Sweeping reveal of protest layers",
+        "Whip-pan into statement text",
+        "Zoom out to full exhibition poster",
+        "Slow pan across symbolic elements",
+        "Circular glide around group portrait",
+        "Layer-by-layer reveal",
+        "Soft hover movement",
+        "Minimal motion locked frame"
+      ],
+      editStyle: [
+        "None",
+        "Bold title-card editorial cuts",
+        "Collage layers unfolding one by one",
+        "Documentary-meets-fashion intercutting",
+        "Elegant slow dissolves",
+        "Fast premium trailer pacing",
+        "Gallery-style scene transitions",
+        "Graphic poster animation feel",
+        "Inspirational tribute montage",
+        "Luxury campaign rhythm",
+        "Magazine-cover motion graphics feel",
+        "Parallax collage transitions",
+        "Photo-to-motion hybrid edit",
+        "Poetic cinematic montage",
+        "Soft floral transition overlays",
+        "Statement-text driven edit",
+        "Street-poster rip transition look",
+        "Symbolic object match cuts",
+        "Timed headline reveal sequence",
+        "Warm emotional documentary edit"
+      ],
+      scenePacing: [
+        "None",
+        "Bold and punchy",
+        "Builds slowly then lands hard",
+        "Calm and reflective",
+        "Confident medium pace",
+        "Crescendo ending",
+        "Dreamy and flowing",
+        "Fast-cut attention grabber",
+        "Gallery slow-burn pacing",
+        "Inspirational steady rise",
+        "Lush and cinematic",
+        "Measured editorial rhythm",
+        "Minimal and elegant",
+        "Powerful opening then soft close",
+        "Slow powerful reveal",
+        "Social-scroll optimized pacing",
+        "Statement-driven momentum",
+        "Strong start to final triumph",
+        "Trailer-like escalation",
+        "Warm and uplifting flow"
+      ],
+      empowermentTheme: [
+        "None",
+        "Ambition",
+        "Boldness",
+        "Confidence",
+        "Courage",
+        "Creativity",
+        "Elevation",
+        "Freedom",
+        "Healing",
+        "Hope",
+        "Leadership",
+        "Legacy",
+        "Liberation",
+        "Resilience",
+        "Self-worth",
+        "Sisterhood",
+        "Strength",
+        "Transformation",
+        "Visibility",
+        "Wisdom"
+      ],
+      communityTheme: [
+        "None",
+        "Care and compassion",
+        "Celebration",
+        "Collective progress",
+        "Community healing",
+        "Diverse representation",
+        "Friendship",
+        "Intergenerational love",
+        "Legacy building",
+        "Mentorship",
+        "Motherhood",
+        "Multi-generational wisdom",
+        "Shared strength",
+        "Unity across cultures",
+        "Uplifting others",
+        "Women supporting women",
+        "Community pride",
+        "Creative sisterhood",
+        "Cross-cultural solidarity",
+        "Mutual empowerment"
+      ],
+      artStyleBlend: [
+        "None",
+        "Activist protest art",
+        "Afrocentric glam portraiture",
+        "Cultural tribute poster",
+        "Documentary collage",
+        "Exhibition print design",
+        "Feminist museum collage",
+        "Fine-art poster design",
+        "High-fashion beauty campaign",
+        "Inspirational tribute poster",
+        "Luxury editorial",
+        "Magazine cover design",
+        "Mixed-media storytelling",
+        "Premium campaign artwork",
+        "Romantic floral illustration",
+        "Scrapbook layering",
+        "Social-impact poster design",
+        "Soft painterly illustration",
+        "Street poster collage",
+        "Vintage-meets-modern collage"
+      ],
+      headlinePreset: [
+        "None",
+        "Bold Women Change History",
+        "Built by Strength",
+        "Celebrating Women Everywhere",
+        "Happy International Women’s Day",
+        "Her Strength Shapes the World",
+        "Honor Her Power",
+        "Phenomenal Women",
+        "Power. Grace. Legacy.",
+        "She Leads. She Builds. She Inspires.",
+        "Strong. Brilliant. Unstoppable.",
+        "The Future Is Female",
+        "Unbreakable. Unstoppable. Unapologetic.",
+        "Voices of Power",
+        "Women Rise Together",
+        "Women Who Changed Everything",
+        "Rise, Reign, Remember",
+        "She Carries the Fire",
+        "Legacy Looks Like Her",
+        "Built by Women, Held by Women"
+      ],
+      quotePreset: [
+        "None",
+        "Beauty, bravery, and boldness",
+        "Believe in yourself",
+        "Built by resilience and sisterhood",
+        "Celebrate strength, courage, and vision",
+        "Courage looks good on her",
+        "Empowering every generation",
+        "Her story matters",
+        "Honor the women who came before us",
+        "Legacy lives through women",
+        "Made to lead, born to rise",
+        "Rise after setbacks",
+        "Strong women make the world better",
+        "Support each other",
+        "Voices that changed history",
+        "Women supporting women",
+        "Her power echoes through generations",
+        "She blooms through every battle",
+        "History remembers the women who rose",
+        "Grace, grit, and glory"
+      ]
+    };
+
+    const presetConfigs = [
+      {
+        name:"Preset 01 – Signature Scroll Stopper",
+        mainHero:"Diverse trio of women standing together",
+        supportingFigures:["Activists","Artists","Women holding signs","Women in modern fashion"],
+        representation:["Black women","Curvy women","Women with natural hair"],
+        emotion:["Bold","Confident","Resilient"],
+        heroPose:"Standing tall facing forward",
+        composition:"Central hero with surrounding mini-scenes",
+        historical:["Archival newspaper clippings","Black-and-white protest photos"],
+        symbolic:["Butterflies","Gold halos","Raised fists"],
+        floral:["Blush roses","Floral frame border"],
+        backgroundStyle:"Bronze museum wall",
+        colorPalette:"Deep brown, bronze, gold, cocoa",
+        lightingStyle:"Dramatic museum spotlight",
+        shadowControl:"Layered collage shadow depth",
+        textureFinish:["Fine-art print finish","Mixed-media layering","Torn paper edges"],
+        typographyStyle:"Giant serif masthead",
+        cameraShot:"Hero trio wide shot",
+        cameraAngle:"Heroic low angle",
+        lensStyle:"Medium-format luxury look",
+        cameraMotion:"Heroic push-in",
+        editStyle:"Luxury campaign rhythm",
+        scenePacing:"Strong start to final triumph",
+        empowermentTheme:["Leadership","Resilience","Strength"],
+        communityTheme:["Diverse representation","Women supporting women"],
+        artStyleBlend:["Feminist museum collage","Fine-art poster design","Luxury editorial"],
+        mainHeadline:"Happy International Women’s Day",
+        supportingQuote:"Strong women make the world better",
+        extraDetails:"distinct faces, premium skin detail, museum-worthy layering, expensive editorial finish"
+      },
+      {
+        name:"Preset 02 – Activist Archive Power",
+        mainHero:"Feminine activist with raised fist",
+        supportingFigures:["Activists","Women holding signs","Women marching"],
+        representation:["African American women","Black women"],
+        emotion:["Bold","Determined","Proud"],
+        heroPose:"Raised fist",
+        composition:"Protest poster collage",
+        historical:["Black-and-white protest photos","Collaged headlines about women’s rights","Voting rights references"],
+        symbolic:["Raised fists","Venus symbols"],
+        floral:["Deep red roses","Wildflowers"],
+        backgroundStyle:"Documentary poster wall",
+        colorPalette:"Black, white, cream, red accents",
+        lightingStyle:"Cinematic contrast lighting",
+        shadowControl:"Bold high-contrast shadows",
+        textureFinish:["Documentary photo grain","Matte poster finish","Torn paper edges"],
+        typographyStyle:"Protest poster lettering",
+        cameraShot:"Tall cinematic hero shot",
+        cameraAngle:"Straight-on poster angle",
+        lensStyle:"Deep focus documentary look",
+        cameraMotion:"Sweeping reveal of protest layers",
+        editStyle:"Documentary-meets-fashion intercutting",
+        scenePacing:"Fast-cut attention grabber",
+        empowermentTheme:["Courage","Liberation","Visibility"],
+        communityTheme:["Collective progress","Unity across cultures"],
+        artStyleBlend:["Activist protest art","Documentary collage","Social-impact poster design"],
+        mainHeadline:"Bold Women Change History",
+        supportingQuote:"Voices that changed history",
+        extraDetails:"historic march energy, urgent but elegant, statement-making composition"
+      },
+      {
+        name:"Preset 03 – Soft Feminine Celebration",
+        mainHero:"Soft but powerful feminine portrait",
+        supportingFigures:["Friends embracing","Mothers","Women celebrating together"],
+        representation:["Diverse women of many backgrounds","Mature women"],
+        emotion:["Joyful","Soft smile","Warm laughter"],
+        heroPose:"Holding flowers",
+        composition:"Soft floral framed collage",
+        historical:["Handwritten notes","Old paper textures"],
+        symbolic:["Butterflies","Hearts","Sacred glow"],
+        floral:["Blush roses","Peonies","Petal rain"],
+        backgroundStyle:"Soft pink watercolor wash",
+        colorPalette:"Blush pink, rose gold, cream, lavender",
+        lightingStyle:"Soft romantic light",
+        shadowControl:"Balanced soft shadows",
+        textureFinish:["Soft painterly texture","Soft blur transitions","Fine-art print finish"],
+        typographyStyle:"Elegant script with serif pairing",
+        cameraShot:"Three-quarter portrait",
+        cameraAngle:"Eye-level editorial",
+        lensStyle:"Dreamy diffusion lens effect",
+        cameraMotion:"Slow rise from flowers to face",
+        editStyle:"Soft floral transition overlays",
+        scenePacing:"Warm and uplifting flow",
+        empowermentTheme:["Healing","Hope","Self-worth"],
+        communityTheme:["Care and compassion","Friendship","Women supporting women"],
+        artStyleBlend:["Inspirational tribute poster","Romantic floral illustration","Soft painterly illustration"],
+        mainHeadline:"Women Rise Together",
+        supportingQuote:"Celebrate strength, courage, and vision",
+        extraDetails:"warm smiles, dreamy softness, elegant flowers, uplifting but premium look"
+      },
+      {
+        name:"Preset 04 – Black Excellence Luxe",
+        mainHero:"Powerful Black woman editorial portrait",
+        supportingFigures:["Artists","Entrepreneurs","Women in modern fashion"],
+        representation:["Black women","Women with natural hair"],
+        emotion:["Confident","Fierce","Regal"],
+        heroPose:"Hands on hips",
+        composition:"Editorial magazine cover collage",
+        historical:["Archival newspaper clippings","Retro photo borders"],
+        symbolic:["Crowns","Gold halos","Sparkles"],
+        floral:["Gold botanical vines","Magnolia blooms"],
+        backgroundStyle:"Rich cocoa and gold backdrop",
+        colorPalette:"Black excellence luxe tones",
+        lightingStyle:"High-end magazine lighting",
+        shadowControl:"Sculpted cheekbone shadows",
+        textureFinish:["Glossy editorial finish","Rich color saturation","Paper overlap shadows"],
+        typographyStyle:"Luxury campaign typography",
+        cameraShot:"Full-body fashion frame",
+        cameraAngle:"Heroic low angle",
+        lensStyle:"85mm portrait compression",
+        cameraMotion:"Orbit around the hero subject",
+        editStyle:"Magazine-cover motion graphics feel",
+        scenePacing:"Statement-driven momentum",
+        empowermentTheme:["Ambition","Confidence","Leadership"],
+        communityTheme:["Creative sisterhood","Shared strength"],
+        artStyleBlend:["Afrocentric glam portraiture","High-fashion beauty campaign","Luxury editorial"],
+        mainHeadline:"Power. Grace. Legacy.",
+        supportingQuote:"Courage looks good on her",
+        extraDetails:"rich melanin glow, high fashion beauty, expensive jewelry feel, commanding presence"
+      },
+      {
+        name:"Preset 05 – Museum Tribute Poster",
+        mainHero:"Museum-style women’s tribute centerpiece",
+        supportingFigures:["Grandmothers","Mothers","Students"],
+        representation:["Diverse women of many backgrounds","Mature women"],
+        emotion:["Reflective","Resilient","Triumphant"],
+        heroPose:"Seated regal pose",
+        composition:"Symmetrical museum poster",
+        historical:["Aged parchment fragments","Historical street scenes","Old photo contact sheets"],
+        symbolic:["Doves","Light aura","Unity symbols"],
+        floral:["Floral halo","Lavender stems","Romantic bouquet elements"],
+        backgroundStyle:"Textured gallery wall",
+        colorPalette:"Neutral sepia, cream, parchment, muted gold",
+        lightingStyle:"Diffused fine-art lighting",
+        shadowControl:"Museum wall shadow projection",
+        textureFinish:["Canvas texture","Fine-art print finish","Museum wall print texture"],
+        typographyStyle:"Exhibition poster typography",
+        cameraShot:"Top-to-bottom exhibition poster frame",
+        cameraAngle:"Gallery wall display angle",
+        lensStyle:"Exhibition-grade sharpness",
+        cameraMotion:"Zoom out to full exhibition poster",
+        editStyle:"Gallery-style scene transitions",
+        scenePacing:"Gallery slow-burn pacing",
+        empowermentTheme:["Legacy","Wisdom","Visibility"],
+        communityTheme:["Intergenerational love","Multi-generational wisdom"],
+        artStyleBlend:["Cultural tribute poster","Exhibition print design","Fine-art poster design"],
+        mainHeadline:"Women Who Changed Everything",
+        supportingQuote:"Honor the women who came before us",
+        extraDetails:"museum plaque energy, heritage collage, historic depth with elegant softness"
+      },
+      {
+        name:"Preset 06 – Royal Blue and Gold Legacy",
+        mainHero:"Elegant woman surrounded by history",
+        supportingFigures:["Grandmothers","Mothers","Women holding hands"],
+        representation:["African American women","Black women","Mature women"],
+        emotion:["Proud","Regal","Resilient"],
+        heroPose:"Hand over heart",
+        composition:"Oversized center portrait with border details",
+        historical:["Archive-stamp textures","Black-and-white protest photos"],
+        symbolic:["Gold halos","Open hands","Stars"],
+        floral:["Gold botanical vines","Peonies"],
+        backgroundStyle:"Bronze museum wall",
+        colorPalette:"Royal blue, gold, cream, cocoa",
+        lightingStyle:"Museum-grade directional lighting",
+        shadowControl:"Text and object cast shadows",
+        textureFinish:["Fine-art print finish","Mixed-media layering","Rich color saturation"],
+        typographyStyle:"Statement serif with script flourishes",
+        cameraShot:"Poster-cover vertical shot",
+        cameraAngle:"Front-facing symmetrical",
+        lensStyle:"Medium-format luxury look",
+        cameraMotion:"Layer-by-layer reveal",
+        editStyle:"Timed headline reveal sequence",
+        scenePacing:"Builds slowly then lands hard",
+        empowermentTheme:["Legacy","Strength","Wisdom"],
+        communityTheme:["Legacy building","Women supporting women"],
+        artStyleBlend:["Cultural tribute poster","Fine-art poster design","Luxury editorial"],
+        mainHeadline:"Legacy Looks Like Her",
+        supportingQuote:"Her power echoes through generations",
+        extraDetails:"royal blue and gold details, premium heritage mood, strong museum-style framing"
+      },
+      {
+        name:"Preset 07 – Women’s Month Floral Uplift",
+        mainHero:"Modern sisterhood group portrait",
+        supportingFigures:["Friends embracing","Women celebrating together","Women creating art"],
+        representation:["Diverse women of many backgrounds","Mature women"],
+        emotion:["Joyful","Hopeful","Warm laughter"],
+        heroPose:"Group linked arm-in-arm",
+        composition:"Storybook collage composition",
+        historical:["Handwritten notes","Typewritten feminist statements"],
+        symbolic:["Butterflies","Hearts","Sacred glow"],
+        floral:["Blush roses","Cherry blossoms","Wildflowers"],
+        backgroundStyle:"Dreamy blush gradient",
+        colorPalette:"Mauve, peach, champagne, soft pink",
+        lightingStyle:"Heavenly soft glow",
+        shadowControl:"Soft ambient shadowing",
+        textureFinish:["Soft painterly texture","Soft blur transitions","Scrapbook texture"],
+        typographyStyle:"Soft feminine script headline",
+        cameraShot:"Editorial group portrait",
+        cameraAngle:"Eye-level editorial",
+        lensStyle:"Dreamy diffusion lens effect",
+        cameraMotion:"Soft hover movement",
+        editStyle:"Inspirational tribute montage",
+        scenePacing:"Dreamy and flowing",
+        empowermentTheme:["Healing","Hope","Sisterhood"],
+        communityTheme:["Celebration","Friendship","Uplifting others"],
+        artStyleBlend:["Inspirational tribute poster","Romantic floral illustration","Scrapbook layering"],
+        mainHeadline:"Celebrating Women Everywhere",
+        supportingQuote:"Empowering every generation",
+        extraDetails:"pink floral joy, warm sisterhood, bright smiles, soft but still premium"
+      },
+      {
+        name:"Preset 08 – Street Poster Revolution",
+        mainHero:"Woman leader speaking with confidence",
+        supportingFigures:["Activists","Students","Women holding signs"],
+        representation:["Diverse women of many backgrounds"],
+        emotion:["Bold","Determined","Intense gaze"],
+        heroPose:"Reaching outward",
+        composition:"Protest poster collage",
+        historical:["Collaged headlines about women’s rights","Historical rally scenes","Torn magazine pages"],
+        symbolic:["Flames of strength","Raised fists","Stars"],
+        floral:["Abstract petals","Deep red roses"],
+        backgroundStyle:"Documentary poster wall",
+        colorPalette:"Activist editorial monochrome with bold accents",
+        lightingStyle:"Cinematic contrast lighting",
+        shadowControl:"Strong silhouette shadow energy",
+        textureFinish:["Documentary photo grain","Magazine cutout texture","Torn paper edges"],
+        typographyStyle:"Stacked bold headline blocks",
+        cameraShot:"Wide mural composition",
+        cameraAngle:"Dutch angle drama",
+        lensStyle:"Wide cinematic depth",
+        cameraMotion:"Lateral slide across layers",
+        editStyle:"Street-poster rip transition look",
+        scenePacing:"Fast-cut attention grabber",
+        empowermentTheme:["Liberation","Visibility","Wisdom"],
+        communityTheme:["Collective progress","Cross-cultural solidarity"],
+        artStyleBlend:["Activist protest art","Street poster collage","Mixed-media storytelling"],
+        mainHeadline:"Voices of Power",
+        supportingQuote:"History remembers the women who rose",
+        extraDetails:"bold public art feeling, rebellious texture, loud visual impact"
+      },
+      {
+        name:"Preset 09 – Editorial Trio Cover",
+        mainHero:"Diverse trio of women standing together",
+        supportingFigures:["Artists","Entrepreneurs","Women in modern fashion"],
+        representation:["African American women","Curvy women","Women with natural hair"],
+        emotion:["Bold","Confident","Proud"],
+        heroPose:"Standing tall facing forward",
+        composition:"Hero trio with supporting scene fragments",
+        historical:["Archival newspaper clippings","Old photo contact sheets"],
+        symbolic:["Gold halos","Light aura","Stars"],
+        floral:["Blush roses","Gold botanical vines"],
+        backgroundStyle:"Deep teal editorial gradient",
+        colorPalette:"Deep teal, gold, jewel tones",
+        lightingStyle:"Polished campaign lighting",
+        shadowControl:"Portrait rim-light shadow contrast",
+        textureFinish:["Glossy editorial finish","Paper overlap shadows","Rich color saturation"],
+        typographyStyle:"Magazine cover text layout",
+        cameraShot:"Hero trio wide shot",
+        cameraAngle:"Straight-on poster angle",
+        lensStyle:"Fashion campaign clarity",
+        cameraMotion:"Circular glide around group portrait",
+        editStyle:"Luxury campaign rhythm",
+        scenePacing:"Measured editorial rhythm",
+        empowermentTheme:["Confidence","Leadership","Strength"],
+        communityTheme:["Diverse representation","Shared strength"],
+        artStyleBlend:["High-fashion beauty campaign","Magazine cover design","Luxury editorial"],
+        mainHeadline:"Strong. Brilliant. Unstoppable.",
+        supportingQuote:"Beauty, bravery, and boldness",
+        extraDetails:"clean editorial fashion, expensive color grading, trio as main power image"
+      },
+      {
+        name:"Preset 10 – Documentary to Glam Transition",
+        mainHero:"Woman in profile with symbolic overlays",
+        supportingFigures:["Activists","Artists","Women marching"],
+        representation:["Black women","Women in creative roles"],
+        emotion:["Emotional","Reflective","Resilient"],
+        heroPose:"Side profile",
+        composition:"Documentary-meets-glam layout",
+        historical:["Black-and-white protest photos","Documentary crowd imagery","Equality movement imagery"],
+        symbolic:["Light aura","Paper tears","Radiant sunbursts"],
+        floral:["Wildflowers","Soft leaves"],
+        backgroundStyle:"Layered paper collage background",
+        colorPalette:"Warm cocoa, cream, blush, muted bronze",
+        lightingStyle:"Warm emotional light",
+        shadowControl:"Soft edge feathered shadows",
+        textureFinish:["Mixed-media layering","Photographic realism","Soft blur transitions"],
+        typographyStyle:"Mixed serif and sans layout",
+        cameraShot:"Medium portrait",
+        cameraAngle:"Left three-quarter angle",
+        lensStyle:"Mixed-focus collage realism",
+        cameraMotion:"Parallax paper-layer movement",
+        editStyle:"Photo-to-motion hybrid edit",
+        scenePacing:"Slow powerful reveal",
+        empowermentTheme:["Healing","Transformation","Visibility"],
+        communityTheme:["Community healing","Women supporting women"],
+        artStyleBlend:["Documentary collage","Mixed-media storytelling","Vintage-meets-modern collage"],
+        mainHeadline:"She Carries the Fire",
+        supportingQuote:"Grace, grit, and glory",
+        extraDetails:"transitional storytelling from history into modern beauty and power"
+      },
+      {
+        name:"Preset 11 – Mother Lineage Tribute",
+        mainHero:"Mother and daughter legacy portrait",
+        supportingFigures:["Daughters","Grandmothers","Mothers"],
+        representation:["African American women","Mature women"],
+        emotion:["Loving","Proud","Resilient"],
+        heroPose:"Embracing another woman",
+        composition:"Legacy timeline collage",
+        historical:["Aged parchment fragments","Historical street scenes"],
+        symbolic:["Hearts","Open hands","Unity symbols"],
+        floral:["Magnolia blooms","Romantic bouquet elements"],
+        backgroundStyle:"Light cream fine-art backdrop",
+        colorPalette:"Dusty rose, mauve, ivory, warm brown",
+        lightingStyle:"Soft romantic light",
+        shadowControl:"Balanced soft shadows",
+        textureFinish:["Canvas texture","Fine-art print finish","Soft painterly texture"],
+        typographyStyle:"Minimal elegant title layout",
+        cameraShot:"Half-body portrait",
+        cameraAngle:"Right three-quarter angle",
+        lensStyle:"Fine-art soft depth falloff",
+        cameraMotion:"Slow cinematic zoom",
+        editStyle:"Poetic cinematic montage",
+        scenePacing:"Calm and reflective",
+        empowermentTheme:["Legacy","Self-worth","Wisdom"],
+        communityTheme:["Intergenerational love","Motherhood","Multi-generational wisdom"],
+        artStyleBlend:["Cultural tribute poster","Soft painterly illustration","Fine-art poster design"],
+        mainHeadline:"Built by Women, Held by Women",
+        supportingQuote:"Legacy lives through women",
+        extraDetails:"tender lineage storytelling, strong family connection, museum-level beauty"
+      },
+      {
+        name:"Preset 12 – High Impact Feminist Exhibition",
+        mainHero:"Museum-style women’s tribute centerpiece",
+        supportingFigures:["Activists","Artists","Teachers"],
+        representation:["Diverse women of many backgrounds"],
+        emotion:["Bold","Reflective","Triumphant"],
+        heroPose:"Looking directly into camera",
+        composition:"Fine-art exhibition layout",
+        historical:["Archive-stamp textures","Black-and-white protest photos","Typewritten feminist statements"],
+        symbolic:["Doves","Radiant sunbursts","Venus symbols"],
+        floral:["Floral halo","Lavender stems"],
+        backgroundStyle:"Textured gallery wall",
+        colorPalette:"Weathered sepia, parchment, cocoa, soft cream",
+        lightingStyle:"Diffused fine-art lighting",
+        shadowControl:"Museum wall shadow projection",
+        textureFinish:["Canvas texture","Museum wall print texture","Paper overlap shadows"],
+        typographyStyle:"Classic museum label typography",
+        cameraShot:"Top-to-bottom exhibition poster frame",
+        cameraAngle:"Gallery wall display angle",
+        lensStyle:"Exhibition-grade sharpness",
+        cameraMotion:"Minimal motion locked frame",
+        editStyle:"Gallery-style scene transitions",
+        scenePacing:"Minimal and elegant",
+        empowermentTheme:["Freedom","Leadership","Visibility"],
+        communityTheme:["Legacy building","Mutual empowerment"],
+        artStyleBlend:["Exhibition print design","Feminist museum collage","Fine-art poster design"],
+        mainHeadline:"Phenomenal Women",
+        supportingQuote:"Her story matters",
+        extraDetails:"exhibition-grade sophistication, premium art-wall feeling"
+      },
+      {
+        name:"Preset 13 – Bold Pink Poster Pop",
+        mainHero:"Community-centered women’s group",
+        supportingFigures:["Artists","Friends embracing","Women celebrating together"],
+        representation:["Diverse women of many backgrounds"],
+        emotion:["Joyful","Bold","Hopeful"],
+        heroPose:"Group linked arm-in-arm",
+        composition:"Floating cutout collage",
+        historical:["Handwritten notes","Vintage women’s rights march photos"],
+        symbolic:["Butterflies","Sparkles","Venus symbols"],
+        floral:["Blooming corners","Cherry blossoms","Peonies"],
+        backgroundStyle:"Dreamy blush gradient",
+        colorPalette:"Purple, magenta, fuchsia, pink",
+        lightingStyle:"Glossy beauty lighting",
+        shadowControl:"Text and object cast shadows",
+        textureFinish:["Glossy editorial finish","Magazine cutout texture","Rich color saturation"],
+        typographyStyle:"Large centered statement text",
+        cameraShot:"Editorial group portrait",
+        cameraAngle:"Tilted magazine-cover angle",
+        lensStyle:"Ultra-clean premium lensing",
+        cameraMotion:"Whip-pan into statement text",
+        editStyle:"Graphic poster animation feel",
+        scenePacing:"Bold and punchy",
+        empowermentTheme:["Boldness","Hope","Sisterhood"],
+        communityTheme:["Celebration","Creative sisterhood","Uplifting others"],
+        artStyleBlend:["Inspirational tribute poster","Magazine cover design","Premium campaign artwork"],
+        mainHeadline:"The Future Is Female",
+        supportingQuote:"Made to lead, born to rise",
+        extraDetails:"graphic impact, feminine power poster, bright but expensive finish"
+      },
+      {
+        name:"Preset 14 – Deep Jewel Tone Glory",
+        mainHero:"Regal goddess-like woman",
+        supportingFigures:["Artists","Caregivers","Women in modern fashion"],
+        representation:["Black women","Women with natural hair"],
+        emotion:["Fierce","Regal","Sacred stillness"],
+        heroPose:"Crowned portrait pose",
+        composition:"Mixed-scale portrait montage",
+        historical:["Historical street scenes","Retro photo borders"],
+        symbolic:["Crowns","Radiant sunbursts","Sacred glow"],
+        floral:["Deep red roses","Magnolia blooms","Petal rain"],
+        backgroundStyle:"Rich jewel-tone backdrop",
+        colorPalette:"Emerald, gold, cream, black",
+        lightingStyle:"Sculpted portrait lighting",
+        shadowControl:"Deep dramatic shadow carving",
+        textureFinish:["Fine-art print finish","Photographic realism","Rich color saturation"],
+        typographyStyle:"High-fashion masthead styling",
+        cameraShot:"Bust portrait crop",
+        cameraAngle:"Slight low angle",
+        lensStyle:"85mm portrait compression",
+        cameraMotion:"Dolly in slowly",
+        editStyle:"Bold title-card editorial cuts",
+        scenePacing:"Crescendo ending",
+        empowermentTheme:["Elevation","Strength","Transformation"],
+        communityTheme:["Shared strength","Women supporting women"],
+        artStyleBlend:["Afrocentric glam portraiture","High-fashion beauty campaign","Premium campaign artwork"],
+        mainHeadline:"Honor Her Power",
+        supportingQuote:"She blooms through every battle",
+        extraDetails:"divine feminine energy, rich jewel tone elegance, unforgettable beauty"
+      },
+      {
+        name:"Preset 15 – Sunset Hope Collage",
+        mainHero:"Heroic women walking forward together",
+        supportingFigures:["Activists","Students","Women holding hands"],
+        representation:["Diverse women of many backgrounds"],
+        emotion:["Hopeful","Triumphant","Warm laughter"],
+        heroPose:"Marching together",
+        composition:"Dynamic diagonal collage",
+        historical:["Black-and-white protest photos","Equality movement imagery"],
+        symbolic:["Doves","Light aura","Unity symbols"],
+        floral:["Sunflowers","Wildflowers"],
+        backgroundStyle:"Warm sunset sky",
+        colorPalette:"Sunset orange, blush, bronze, deep brown",
+        lightingStyle:"Golden hour radiance",
+        shadowControl:"Directional spotlight falloff",
+        textureFinish:["Mixed-media layering","Soft blur transitions","Torn paper edges"],
+        typographyStyle:"Modern gallery title lockup",
+        cameraShot:"Wide mural composition",
+        cameraAngle:"Wide environmental angle",
+        lensStyle:"Wide cinematic depth",
+        cameraMotion:"Crane up reveal",
+        editStyle:"Warm emotional documentary edit",
+        scenePacing:"Inspirational steady rise",
+        empowermentTheme:["Hope","Liberation","Resilience"],
+        communityTheme:["Collective progress","Unity across cultures"],
+        artStyleBlend:["Documentary collage","Inspirational tribute poster","Premium campaign artwork"],
+        mainHeadline:"Rise, Reign, Remember",
+        supportingQuote:"Her power echoes through generations",
+        extraDetails:"sunset hope, collective movement, emotional uplift, gallery-worthy ending"
+      },
+      {
+        name:"Preset 16 – Sisterhood in Bloom",
+        mainHero:"Woman embracing another woman",
+        supportingFigures:["Friends embracing","Women holding hands","Women celebrating together"],
+        representation:["Diverse women of many backgrounds","Plus-size women"],
+        emotion:["Joyful","Loving","Soft smile"],
+        heroPose:"Embracing another woman",
+        composition:"Soft floral framed collage",
+        historical:["Handwritten notes","Old paper textures"],
+        symbolic:["Hearts","Light aura","Unity symbols"],
+        floral:["Blush roses","Flower crown","Wildflowers"],
+        backgroundStyle:"Soft pink watercolor wash",
+        colorPalette:"Warm gold, rose, ivory, soft plum",
+        lightingStyle:"Heavenly soft glow",
+        shadowControl:"Balanced soft shadows",
+        textureFinish:["Fine-art print finish","Soft painterly texture","Soft blur transitions"],
+        typographyStyle:"Elegant script with serif pairing",
+        cameraShot:"Half-body portrait",
+        cameraAngle:"Eye-level editorial",
+        lensStyle:"Dreamy diffusion lens effect",
+        cameraMotion:"Soft hover movement",
+        editStyle:"Poetic cinematic montage",
+        scenePacing:"Warm and uplifting flow",
+        empowermentTheme:["Healing","Sisterhood","Transformation"],
+        communityTheme:["Care and compassion","Friendship","Women supporting women"],
+        artStyleBlend:["Inspirational tribute poster","Romantic floral illustration","Soft painterly illustration"],
+        mainHeadline:"Women Rise Together",
+        supportingQuote:"Support each other",
+        extraDetails:"tender emotional connection, rich softness, still premium and elegant"
+      },
+      {
+        name:"Preset 17 – Heritage Wall of Honor",
+        mainHero:"Elegant woman surrounded by history",
+        supportingFigures:["Grandmothers","Teachers","Women creating art"],
+        representation:["African women","Black women","Mature women"],
+        emotion:["Proud","Reflective","Regal"],
+        heroPose:"Looking upward",
+        composition:"Fine-art exhibition layout",
+        historical:["Aged parchment fragments","Old photo contact sheets","Torn magazine pages"],
+        symbolic:["Crowns","Open hands","Radiant sunbursts"],
+        floral:["Gold botanical vines","Lavender stems","Magnolia blooms"],
+        backgroundStyle:"Textured gallery wall",
+        colorPalette:"Rich burgundy, gold, cream, cocoa",
+        lightingStyle:"Museum-grade directional lighting",
+        shadowControl:"Museum wall shadow projection",
+        textureFinish:["Canvas texture","Mixed-media layering","Museum wall print texture"],
+        typographyStyle:"Exhibition poster typography",
+        cameraShot:"Poster-cover vertical shot",
+        cameraAngle:"Front-facing symmetrical",
+        lensStyle:"Exhibition-grade sharpness",
+        cameraMotion:"Zoom out to full exhibition poster",
+        editStyle:"Gallery-style scene transitions",
+        scenePacing:"Gallery slow-burn pacing",
+        empowermentTheme:["Legacy","Visibility","Wisdom"],
+        communityTheme:["Legacy building","Multi-generational wisdom","Uplifting others"],
+        artStyleBlend:["Cultural tribute poster","Exhibition print design","Fine-art poster design"],
+        mainHeadline:"Women Who Changed Everything",
+        supportingQuote:"Honor the women who came before us",
+        extraDetails:"wall of honor energy, cultural richness, refined historic collage"
+      },
+      {
+        name:"Preset 18 – Courage in Color",
+        mainHero:"Close-up beauty portrait with collage background",
+        supportingFigures:["Artists","Women in modern fashion"],
+        representation:["Afro-Latina women","Black women","Women with natural hair"],
+        emotion:["Bold","Confident","Intense gaze"],
+        heroPose:"Close-up face framing",
+        composition:"Editorial magazine cover collage",
+        historical:["Archive-stamp textures","Collaged headlines about women’s rights"],
+        symbolic:["Gold halos","Sparkles","Stars"],
+        floral:["Abstract petals","Blooming corners","Peonies"],
+        backgroundStyle:"Rich jewel-tone backdrop",
+        colorPalette:"Wine, gold, cocoa, muted blush",
+        lightingStyle:"Glossy beauty lighting",
+        shadowControl:"Sculpted cheekbone shadows",
+        textureFinish:["Glossy editorial finish","Photographic realism","Rich color saturation"],
+        typographyStyle:"High-fashion masthead styling",
+        cameraShot:"Close-up beauty crop",
+        cameraAngle:"Intimate close frontal angle",
+        lensStyle:"85mm portrait compression",
+        cameraMotion:"Slow cinematic zoom",
+        editStyle:"Magazine-cover motion graphics feel",
+        scenePacing:"Measured editorial rhythm",
+        empowermentTheme:["Boldness","Confidence","Visibility"],
+        communityTheme:["Creative sisterhood","Shared strength"],
+        artStyleBlend:["Afrocentric glam portraiture","High-fashion beauty campaign","Luxury editorial"],
+        mainHeadline:"Power. Grace. Legacy.",
+        supportingQuote:"She blooms through every battle",
+        extraDetails:"beauty campaign intensity, luxe skin detail, vibrant but dignified storytelling"
+      },
+      {
+        name:"Preset 19 – Women Who Lead",
+        mainHero:"Woman leader speaking with confidence",
+        supportingFigures:["Entrepreneurs","Students","Teachers"],
+        representation:["Diverse women of many backgrounds","Women in creative roles"],
+        emotion:["Bold","Confident","Determined"],
+        heroPose:"Reaching outward",
+        composition:"Vertical tribute poster design",
+        historical:["Collaged headlines about women’s rights","Documentary crowd imagery","Voting rights references"],
+        symbolic:["Light aura","Raised fists","Stars"],
+        floral:["Gold botanical vines","Soft leaves"],
+        backgroundStyle:"Deep teal editorial gradient",
+        colorPalette:"Royal blue, gold, cream, cocoa",
+        lightingStyle:"Polished campaign lighting",
+        shadowControl:"Text and object cast shadows",
+        textureFinish:["Fine-art print finish","Paper overlap shadows","Rich color saturation"],
+        typographyStyle:"Statement serif with script flourishes",
+        cameraShot:"Tall cinematic hero shot",
+        cameraAngle:"Heroic low angle",
+        lensStyle:"Fashion campaign clarity",
+        cameraMotion:"Heroic push-in",
+        editStyle:"Timed headline reveal sequence",
+        scenePacing:"Statement-driven momentum",
+        empowermentTheme:["Leadership","Strength","Visibility"],
+        communityTheme:["Collective progress","Mutual empowerment","Uplifting others"],
+        artStyleBlend:["Magazine cover design","Premium campaign artwork","Social-impact poster design"],
+        mainHeadline:"She Leads. She Builds. She Inspires.",
+        supportingQuote:"Made to lead, born to rise",
+        extraDetails:"leader-focused hero frame, premium but powerful, polished speaking pose"
+      },
+      {
+        name:"Preset 20 – Healing Generations",
+        mainHero:"Multi-generational women portrait",
+        supportingFigures:["Daughters","Grandmothers","Mothers","Women holding hands"],
+        representation:["African American women","Black women","Mature women"],
+        emotion:["Loving","Reflective","Warm laughter"],
+        heroPose:"Group linked arm-in-arm",
+        composition:"Legacy timeline collage",
+        historical:["Aged parchment fragments","Handwritten notes","Historical street scenes"],
+        symbolic:["Hearts","Open hands","Sacred glow"],
+        floral:["Lavender stems","Magnolia blooms","Romantic bouquet elements"],
+        backgroundStyle:"Light cream fine-art backdrop",
+        colorPalette:"Warm cocoa, cream, blush, muted bronze",
+        lightingStyle:"Warm emotional light",
+        shadowControl:"Soft ambient shadowing",
+        textureFinish:["Canvas texture","Fine-art print finish","Soft painterly texture"],
+        typographyStyle:"Minimal elegant title layout",
+        cameraShot:"Editorial group portrait",
+        cameraAngle:"Right three-quarter angle",
+        lensStyle:"Fine-art soft depth falloff",
+        cameraMotion:"Slow rise from flowers to face",
+        editStyle:"Warm emotional documentary edit",
+        scenePacing:"Calm and reflective",
+        empowermentTheme:["Healing","Legacy","Self-worth"],
+        communityTheme:["Intergenerational love","Motherhood","Multi-generational wisdom"],
+        artStyleBlend:["Cultural tribute poster","Inspirational tribute poster","Soft painterly illustration"],
+        mainHeadline:"Built by Women, Held by Women",
+        supportingQuote:"Her power echoes through generations",
+        extraDetails:"emotional family warmth, graceful generations, soft but premium museum mood"
+      },
+      {
+        name:"Preset 21 – March of Triumph",
+        mainHero:"Heroic women walking forward together",
+        supportingFigures:["Activists","Athletes","Students","Women marching"],
+        representation:["African American women","Curvy women","Diverse women of many backgrounds"],
+        emotion:["Bold","Determined","Triumphant"],
+        heroPose:"Marching together",
+        composition:"Dynamic diagonal collage",
+        historical:["Black-and-white protest photos","Historical rally scenes","Protest sign fragments"],
+        symbolic:["Flames of strength","Raised fists","Radiant sunbursts"],
+        floral:["Deep red roses","Petal rain","Wildflowers"],
+        backgroundStyle:"Warm sunset sky",
+        colorPalette:"Sunset orange, blush, bronze, deep brown",
+        lightingStyle:"Golden hour radiance",
+        shadowControl:"Strong silhouette shadow energy",
+        textureFinish:["Documentary photo grain","Mixed-media layering","Torn paper edges"],
+        typographyStyle:"Stacked bold headline blocks",
+        cameraShot:"Wide mural composition",
+        cameraAngle:"Wide environmental angle",
+        lensStyle:"Wide cinematic depth",
+        cameraMotion:"Crane up reveal",
+        editStyle:"Fast premium trailer pacing",
+        scenePacing:"Strong start to final triumph",
+        empowermentTheme:["Courage","Liberation","Resilience"],
+        communityTheme:["Collective progress","Unity across cultures","Women supporting women"],
+        artStyleBlend:["Activist protest art","Documentary collage","Premium campaign artwork"],
+        mainHeadline:"Unbreakable. Unstoppable. Unapologetic.",
+        supportingQuote:"Rise after setbacks",
+        extraDetails:"cinematic movement, collective fire, bold march energy with polish"
+      },
+      {
+        name:"Preset 22 – Floral Power Icon",
+        mainHero:"Afrocentric beauty queen portrait",
+        supportingFigures:["Artists","Women in modern fashion"],
+        representation:["African women","Black women","Women with natural hair"],
+        emotion:["Fierce","Proud","Regal"],
+        heroPose:"Crowned portrait pose",
+        composition:"Oversized center portrait with border details",
+        historical:["Retro photo borders","Torn magazine pages"],
+        symbolic:["Crowns","Gold halos","Sacred glow"],
+        floral:["Flower crown","Gold botanical vines","Peonies"],
+        backgroundStyle:"Gold and cream abstract field",
+        colorPalette:"Warm gold, rose, ivory, soft plum",
+        lightingStyle:"Sculpted portrait lighting",
+        shadowControl:"Deep dramatic shadow carving",
+        textureFinish:["Fine-art print finish","Glossy editorial finish","Rich color saturation"],
+        typographyStyle:"Luxury campaign typography",
+        cameraShot:"Bust portrait crop",
+        cameraAngle:"Slight low angle",
+        lensStyle:"Medium-format luxury look",
+        cameraMotion:"Dolly in slowly",
+        editStyle:"Bold title-card editorial cuts",
+        scenePacing:"Crescendo ending",
+        empowermentTheme:["Elevation","Strength","Transformation"],
+        communityTheme:["Creative sisterhood","Shared strength","Women supporting women"],
+        artStyleBlend:["Afrocentric glam portraiture","High-fashion beauty campaign","Premium campaign artwork"],
+        mainHeadline:"Honor Her Power",
+        supportingQuote:"Courage looks good on her",
+        extraDetails:"flowered regal icon, luxe afrocentric styling, polished statement portrait"
+      },
+      {
+        name:"Preset 23 – Poster of Possibility",
+        mainHero:"Soft but powerful feminine portrait",
+        supportingFigures:["Students","Women creating art","Women celebrating together"],
+        representation:["Diverse women of many backgrounds","Women in creative roles"],
+        emotion:["Hopeful","Joyful","Resilient"],
+        heroPose:"Looking directly into camera",
+        composition:"Floating cutout collage",
+        historical:["Handwritten notes","Typewritten feminist statements","Vintage women’s rights march photos"],
+        symbolic:["Butterflies","Light aura","Stars"],
+        floral:["Blush roses","Cherry blossoms","Wildflowers"],
+        backgroundStyle:"Dreamy blush gradient",
+        colorPalette:"Soft feminine pastels with powerful contrast",
+        lightingStyle:"Luminous editorial glow",
+        shadowControl:"Soft edge feathered shadows",
+        textureFinish:["Glossy editorial finish","Magazine cutout texture","Soft blur transitions"],
+        typographyStyle:"Large centered statement text",
+        cameraShot:"Medium portrait",
+        cameraAngle:"Tilted magazine-cover angle",
+        lensStyle:"Ultra-clean premium lensing",
+        cameraMotion:"Whip-pan into statement text",
+        editStyle:"Graphic poster animation feel",
+        scenePacing:"Bold and punchy",
+        empowermentTheme:["Hope","Self-worth","Transformation"],
+        communityTheme:["Celebration","Creative sisterhood","Mutual empowerment"],
+        artStyleBlend:["Inspirational tribute poster","Magazine cover design","Vintage-meets-modern collage"],
+        mainHeadline:"The Future Is Female",
+        supportingQuote:"Believe in yourself",
+        extraDetails:"youthful optimism, polished collage joy, statement poster with tenderness"
+      },
+      {
+        name:"Preset 24 – Sacred Feminine Light",
+        mainHero:"Regal goddess-like woman",
+        supportingFigures:["Caregivers","Mothers","Women holding hands"],
+        representation:["Black women","Women with natural hair"],
+        emotion:["Reflective","Regal","Sacred stillness"],
+        heroPose:"Hand over heart",
+        composition:"Symmetrical museum poster",
+        historical:["Aged parchment fragments","Historical street scenes","Old paper textures"],
+        symbolic:["Doves","Light aura","Sacred glow"],
+        floral:["Floral halo","Lavender stems","Magnolia blooms"],
+        backgroundStyle:"Soft cloudscape",
+        colorPalette:"Mauve, peach, champagne, soft pink",
+        lightingStyle:"Heavenly soft glow",
+        shadowControl:"Soft ambient shadowing",
+        textureFinish:["Canvas texture","Fine-art print finish","Soft painterly texture"],
+        typographyStyle:"Statement serif with script flourishes",
+        cameraShot:"Poster-cover vertical shot",
+        cameraAngle:"Front-facing symmetrical",
+        lensStyle:"Dreamy diffusion lens effect",
+        cameraMotion:"Minimal motion locked frame",
+        editStyle:"Poetic cinematic montage",
+        scenePacing:"Minimal and elegant",
+        empowermentTheme:["Healing","Strength","Wisdom"],
+        communityTheme:["Care and compassion","Intergenerational love","Women supporting women"],
+        artStyleBlend:["Cultural tribute poster","Fine-art poster design","Soft painterly illustration"],
+        mainHeadline:"She Carries the Fire",
+        supportingQuote:"Grace, grit, and glory",
+        extraDetails:"sacred feminine serenity, rich light, museum-soft divinity"
+      },
+      {
+        name:"Preset 25 – Legacy in Motion",
+        mainHero:"Working woman tribute portrait",
+        supportingFigures:["Caregivers","Entrepreneurs","Teachers","Women marching"],
+        representation:["African American women","Black women","Women in creative roles"],
+        emotion:["Bold","Proud","Resilient"],
+        heroPose:"Standing tall facing forward",
+        composition:"Documentary-meets-glam layout",
+        historical:["Archive-stamp textures","Documentary crowd imagery","Equality movement imagery"],
+        symbolic:["Open hands","Radiant sunbursts","Unity symbols"],
+        floral:["Gold botanical vines","Soft leaves","Sunflowers"],
+        backgroundStyle:"Rich cocoa and gold backdrop",
+        colorPalette:"Deep brown, bronze, gold, cocoa",
+        lightingStyle:"Premium studio lighting",
+        shadowControl:"Rich dimensional shadow pockets",
+        textureFinish:["Mixed-media layering","Photographic realism","Rich color saturation"],
+        typographyStyle:"Modern gallery title lockup",
+        cameraShot:"Environmental portrait",
+        cameraAngle:"Heroic low angle",
+        lensStyle:"Deep focus documentary look",
+        cameraMotion:"Layer-by-layer reveal",
+        editStyle:"Photo-to-motion hybrid edit",
+        scenePacing:"Builds slowly then lands hard",
+        empowermentTheme:["Ambition","Legacy","Resilience"],
+        communityTheme:["Collective progress","Shared strength","Uplifting others"],
+        artStyleBlend:["Documentary collage","Luxury editorial","Mixed-media storytelling"],
+        mainHeadline:"Built by Strength",
+        supportingQuote:"History remembers the women who rose",
+        extraDetails:"tribute to everyday power, polished realism, legacy and labor with glamour"
+      }
+    ];
+
+    function populateSelect(id, options, isMultiple = false) {
+      const select = document.getElementById(id);
+      select.innerHTML = "";
+      options.forEach(opt => {
+        const o = document.createElement("option");
+        o.value = opt;
+        o.textContent = opt;
+        select.appendChild(o);
+      });
+      if (isMultiple) select.size = 8;
+    }
+
+
+    const sectionLocks = {
+      coreSubject:false,
+      compositionLayers:false,
+      lookFeel:false,
+      cameraControl:false,
+      themeDirection:false,
+      musicFunnel:false,
+      textCustom:false
+    };
+
+    const sectionFieldMap = {
+      coreSubject:["mainHero","supportingFigures","representation","emotion","heroPose"],
+      compositionLayers:["composition","historical","symbolic","floral","backgroundStyle"],
+      lookFeel:["colorPalette","lightingStyle","shadowControl","textureFinish","typographyStyle"],
+      cameraControl:["cameraShot","cameraAngle","lensStyle","cameraMotion","editStyle","scenePacing"],
+      themeDirection:["empowermentTheme","communityTheme","artStyleBlend"],
+      musicFunnel:["songGenre","songCustom","weirdnessLevel","styleInfluence","audioInfluence"],
+      textCustom:["headlinePreset","quotePreset","mainHeadline","supportingQuote","extraDetails"]
+    };
+
+    function toggleCategoryLock(lockId, btn){
+      sectionLocks[lockId] = !sectionLocks[lockId];
+      btn.classList.toggle("locked", sectionLocks[lockId]);
+      btn.textContent = sectionLocks[lockId] ? "Section Locked" : "Lock Section";
+    }
+
+    function isFieldLocked(fieldId){
+      for(const [section, fields] of Object.entries(sectionFieldMap)){
+        if(fields.includes(fieldId)) return !!sectionLocks[section];
+      }
+      return false;
+    }
+
+    function savePromptHistory(){
+      const photo = document.getElementById("photoPrompt")?.value || "";
+      const video = document.getElementById("videoPrompt")?.value || "";
+      const song = document.getElementById("songPrompt")?.value || "";
+      const marketing = document.getElementById("marketingPrompt")?.value || "";
+      const variations = document.getElementById("variationPrompt")?.value || "";
+      if(!photo.trim() && !video.trim() && !song.trim() && !marketing.trim()){
+        alert("Generate something first.");
+        return;
+      }
+      const item = {
+        ts: new Date().toLocaleString(),
+        photo, video, song, marketing, variations
+      };
+      const history = JSON.parse(localStorage.getItem("womensDayPromptHistory") || "[]");
+      history.unshift(item);
+      localStorage.setItem("womensDayPromptHistory", JSON.stringify(history.slice(0,12)));
+      renderPromptHistory();
+      alert("Prompt saved.");
+    }
+
+    function renderPromptHistory(){
+      const wrap = document.getElementById("promptHistoryList");
+      if(!wrap) return;
+      const history = JSON.parse(localStorage.getItem("womensDayPromptHistory") || "[]");
+      if(!history.length){
+        wrap.innerHTML = '<div class="history-item"><div class="meta">No saved prompts yet.</div><div class="preview">Use the Save Prompt button after you generate something.</div></div>';
+        return;
+      }
+      wrap.innerHTML = history.map((item, idx) => {
+        const preview = (item.photo || item.video || item.song || item.marketing || "").slice(0,180);
+        return `<div class="history-item">
+          <div class="meta">${item.ts}</div>
+          <div class="preview">${preview.replace(/</g,'&lt;')}</div>
+          <div class="small-actions" style="margin-top:8px">
+            <button class="btn ghost" onclick="loadPromptHistory(${idx})">Load</button>
+            <button class="btn danger" onclick="deletePromptHistory(${idx})">Delete</button>
+            <button class="btn success" onclick="copyHistoryItem(${idx})">Copy</button>
+          </div>
+        </div>`;
+      }).join("");
+    }
+
+    function loadPromptHistory(idx){
+      const history = JSON.parse(localStorage.getItem("womensDayPromptHistory") || "[]");
+      const item = history[idx];
+      if(!item) return;
+      if(document.getElementById("photoPrompt")) document.getElementById("photoPrompt").value = item.photo || "";
+      if(document.getElementById("videoPrompt")) document.getElementById("videoPrompt").value = item.video || "";
+      if(document.getElementById("songPrompt")) document.getElementById("songPrompt").value = item.song || "";
+      if(document.getElementById("marketingPrompt")) document.getElementById("marketingPrompt").value = item.marketing || "";
+      if(document.getElementById("variationPrompt")) document.getElementById("variationPrompt").value = item.variations || "";
+    }
+
+    function deletePromptHistory(idx){
+      const history = JSON.parse(localStorage.getItem("womensDayPromptHistory") || "[]");
+      history.splice(idx, 1);
+      localStorage.setItem("womensDayPromptHistory", JSON.stringify(history));
+      renderPromptHistory();
+    }
+
+    function copyHistoryItem(idx){
+      const history = JSON.parse(localStorage.getItem("womensDayPromptHistory") || "[]");
+      const item = history[idx];
+      if(!item) return;
+      const text = [item.photo, item.video, item.song, item.marketing, item.variations].filter(Boolean).join("\n\n");
+      navigator.clipboard.writeText(text).then(() => alert("Copied."));
+    }
+
+    function generateThreeVariations(){
+      const lockedMainHero = getSingle("mainHero");
+      const lockedRepresentation = getMulti("representation");
+      const variations = [];
+      for(let i=1;i<=3;i++){
+        const randomHistory = randomFromOptions("historical", 2, true);
+        const randomSymbolic = randomFromOptions("symbolic", 2, true);
+        const randomFloral = randomFromOptions("floral", 2, true);
+        const randomEmotion = randomFromOptions("emotion", 2, true);
+        const randomTexture = randomFromOptions("textureFinish", 2, true);
+        const randomArt = randomFromOptions("artStyleBlend", 2, true);
+        const randomCamera = randomFromOptions("cameraAngle");
+        const randomShot = randomFromOptions("cameraShot");
+        const randomLight = randomFromOptions("lightingStyle");
+        const randomShadow = randomFromOptions("shadowControl");
+        const randomTypography = randomFromOptions("typographyStyle");
+        const randomComposition = randomFromOptions("composition");
+        variations.push(
+`Variation ${i}:
+For 3 variations, keep the same character identity, gender, ethnicity, and skin tone, but fully change hair, makeup, art style, outfit, shoes, accessories, pose, camera, lighting, shadow, typography, facial expression, facial features, eyebrows, aspect ratio and scene so each variation looks obviously different.
+
+Keep the same main character focus: ${lockedMainHero || "current subject"}.
+Keep ethnicity / representation anchored to: ${lockedRepresentation.length ? joinNice(lockedRepresentation) : "current representation"}.
+Change to a clearly different composition: ${randomComposition}.
+Change emotional tone to: ${joinNice(randomEmotion)}.
+Change historical layers to: ${joinNice(randomHistory)}.
+Change symbolic elements to: ${joinNice(randomSymbolic)}.
+Change floral details to: ${joinNice(randomFloral)}.
+Change texture / finish to: ${joinNice(randomTexture)}.
+Change art direction to: ${joinNice(randomArt)}.
+Change shot type to: ${randomShot}.
+Change camera angle to: ${randomCamera}.
+Change lighting to: ${randomLight}.
+Change shadow design to: ${randomShadow}.
+Change typography style to: ${randomTypography}.
+Make the final result still feel like a premium Women’s Day visual and obviously different from the others.`
+        );
+      }
+      if(document.getElementById("variationPrompt")){
+        document.getElementById("variationPrompt").value = variations.join("\n\n");
+      }
+    }
+
+    function initFields() {
+      Object.keys(fieldOptions).forEach(key => {
+        const el = document.getElementById(key);
+        if (!el) return;
+        const isMultiple = el.multiple;
+        populateSelect(key, fieldOptions[key], isMultiple);
+      });
+
+      const presetSelect = document.getElementById("presetSelect");
+      presetSelect.innerHTML = "";
+      const none = document.createElement("option");
+      none.value = "";
+      none.textContent = "None";
+      presetSelect.appendChild(none);
+      presetConfigs.forEach((preset, index) => {
+        const opt = document.createElement("option");
+        opt.value = index;
+        opt.textContent = preset.name;
+        presetSelect.appendChild(opt);
+      });
+
+      document.getElementById("headlinePreset").addEventListener("change", function(){
+        if(this.value !== "None") document.getElementById("mainHeadline").value = this.value;
+      });
+      document.getElementById("quotePreset").addEventListener("change", function(){
+        if(this.value !== "None") document.getElementById("supportingQuote").value = this.value;
+      });
+
+      applyDefaultSignaturePreset();
+    }
+
+    function setSingle(id, value){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.value = value || "None";
+    }
+
+    function setMulti(id, values = []){
+      const el = document.getElementById(id);
+      if (!el) return;
+      Array.from(el.options).forEach(opt => {
+        opt.selected = values.includes(opt.value);
+      });
+    }
+
+    function getMulti(id){
+      const el = document.getElementById(id);
+      return Array.from(el.selectedOptions)
+        .map(o => o.value)
+        .filter(v => v && v !== "None");
+    }
+
+    function getSingle(id){
+      const el = document.getElementById(id);
+      return el && el.value !== "None" ? el.value : "";
+    }
+
+    function getMusicGenres(){
+      const el = document.getElementById("songGenre");
+      return el ? Array.from(el.selectedOptions).map(o => o.value).filter(v => v && v !== "None") : [];
+    }
+
+    function applyPreset(config){
+      if(!config) return;
+      setSingle("mainHero", config.mainHero);
+      setMulti("supportingFigures", config.supportingFigures || []);
+      setMulti("representation", config.representation || []);
+      setMulti("emotion", config.emotion || []);
+      setSingle("heroPose", config.heroPose);
+      setSingle("composition", config.composition);
+      setMulti("historical", config.historical || []);
+      setMulti("symbolic", config.symbolic || []);
+      setMulti("floral", config.floral || []);
+      setSingle("backgroundStyle", config.backgroundStyle);
+      setSingle("colorPalette", config.colorPalette);
+      setSingle("lightingStyle", config.lightingStyle);
+      setSingle("shadowControl", config.shadowControl);
+      setMulti("textureFinish", config.textureFinish || []);
+      setSingle("typographyStyle", config.typographyStyle);
+      setSingle("cameraShot", config.cameraShot);
+      setSingle("cameraAngle", config.cameraAngle);
+      setSingle("lensStyle", config.lensStyle);
+      setSingle("cameraMotion", config.cameraMotion);
+      setSingle("editStyle", config.editStyle);
+      setSingle("scenePacing", config.scenePacing);
+      setMulti("empowermentTheme", config.empowermentTheme || []);
+      setMulti("communityTheme", config.communityTheme || []);
+      setMulti("artStyleBlend", config.artStyleBlend || []);
+      document.getElementById("mainHeadline").value = config.mainHeadline || "";
+      document.getElementById("supportingQuote").value = config.supportingQuote || "";
+      document.getElementById("extraDetails").value = config.extraDetails || "";
+    }
+
+    function applySelectedPreset(){
+      const value = document.getElementById("presetSelect").value;
+      if(value === ""){
+        alert("Pick a preset first.");
+        return;
+      }
+      applyPreset(presetConfigs[Number(value)]);
+      generatePrompts();
+    }
+
+    function applyDefaultSignaturePreset(){
+      document.getElementById("presetSelect").value = "0";
+      applyPreset(presetConfigs[0]);
+      generatePrompts();
+    }
+
+    function randomItem(arr){
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function randomFromOptions(key, count = 1, multi = false){
+      const arr = fieldOptions[key].filter(x => x !== "None");
+      if(!multi) return randomItem(arr);
+      const copy = [...arr].sort(() => Math.random() - 0.5);
+      return copy.slice(0, count);
+    }
+
+    function randomizeAll(){
+      if(!isFieldLocked("mainHero")) setSingle("mainHero", randomFromOptions("mainHero"));
+      if(!isFieldLocked("supportingFigures")) setMulti("supportingFigures", randomFromOptions("supportingFigures", 4, true));
+      if(!isFieldLocked("representation")) setMulti("representation", randomFromOptions("representation", 3, true));
+      if(!isFieldLocked("emotion")) setMulti("emotion", randomFromOptions("emotion", 3, true));
+      if(!isFieldLocked("heroPose")) setSingle("heroPose", randomFromOptions("heroPose"));
+      if(!isFieldLocked("composition")) setSingle("composition", randomFromOptions("composition"));
+      if(!isFieldLocked("historical")) setMulti("historical", randomFromOptions("historical", 3, true));
+      if(!isFieldLocked("symbolic")) setMulti("symbolic", randomFromOptions("symbolic", 3, true));
+      if(!isFieldLocked("floral")) setMulti("floral", randomFromOptions("floral", 3, true));
+      if(!isFieldLocked("backgroundStyle")) setSingle("backgroundStyle", randomFromOptions("backgroundStyle"));
+      if(!isFieldLocked("colorPalette")) setSingle("colorPalette", randomFromOptions("colorPalette"));
+      if(!isFieldLocked("lightingStyle")) setSingle("lightingStyle", randomFromOptions("lightingStyle"));
+      if(!isFieldLocked("shadowControl")) setSingle("shadowControl", randomFromOptions("shadowControl"));
+      if(!isFieldLocked("textureFinish")) setMulti("textureFinish", randomFromOptions("textureFinish", 3, true));
+      if(!isFieldLocked("typographyStyle")) setSingle("typographyStyle", randomFromOptions("typographyStyle"));
+      if(!isFieldLocked("cameraShot")) setSingle("cameraShot", randomFromOptions("cameraShot"));
+      if(!isFieldLocked("cameraAngle")) setSingle("cameraAngle", randomFromOptions("cameraAngle"));
+      if(!isFieldLocked("lensStyle")) setSingle("lensStyle", randomFromOptions("lensStyle"));
+      if(!isFieldLocked("cameraMotion")) setSingle("cameraMotion", randomFromOptions("cameraMotion"));
+      if(!isFieldLocked("editStyle")) setSingle("editStyle", randomFromOptions("editStyle"));
+      if(!isFieldLocked("scenePacing")) setSingle("scenePacing", randomFromOptions("scenePacing"));
+      if(!isFieldLocked("empowermentTheme")) setMulti("empowermentTheme", randomFromOptions("empowermentTheme", 3, true));
+      if(!isFieldLocked("communityTheme")) setMulti("communityTheme", randomFromOptions("communityTheme", 2, true));
+      if(!isFieldLocked("artStyleBlend")) setMulti("artStyleBlend", randomFromOptions("artStyleBlend", 3, true));
+
+      const headlineChoices = fieldOptions.headlinePreset.filter(x => x !== "None");
+      const quoteChoices = fieldOptions.quotePreset.filter(x => x !== "None");
+      if(!isFieldLocked("mainHeadline")) document.getElementById("mainHeadline").value = randomItem(headlineChoices);
+      if(!isFieldLocked("supportingQuote")) document.getElementById("supportingQuote").value = randomItem(quoteChoices);
+
+      const extraIdeas = [
+        "distinct faces, rich melanin, premium editorial styling, emotional power",
+        "museum poster energy, layered history, symbolic softness, stop-the-scroll impact",
+        "glamorous women, dramatic mood, premium details, floral symbolism and strength",
+        "cultural pride, archival depth, sophisticated layout, unforgettable finish",
+        "luxury collage, beautiful typography, strong women, powerful story layers"
+      ];
+      if(!isFieldLocked("extraDetails")) document.getElementById("extraDetails").value = randomItem(extraIdeas);
+
+      generatePrompts();
+    }
+
+    function clearAllFields(){
+      Object.keys(fieldOptions).forEach(key => {
+        const el = document.getElementById(key);
+        if(!el) return;
+        if(el.multiple){
+          Array.from(el.options).forEach((opt, idx) => opt.selected = idx === 0);
+        } else {
+          el.selectedIndex = 0;
+        }
+      });
+      document.getElementById("presetSelect").value = "";
+      if(!isFieldLocked("mainHeadline")) document.getElementById("mainHeadline").value = "";
+      if(!isFieldLocked("supportingQuote")) document.getElementById("supportingQuote").value = "";
+      if(!isFieldLocked("extraDetails")) document.getElementById("extraDetails").value = "";
+      if(document.getElementById("songGenre") && !isFieldLocked("songGenre")){
+        Array.from(document.getElementById("songGenre").options).forEach((opt, idx) => opt.selected = idx === 0);
+      }
+      if(document.getElementById("songCustom") && !isFieldLocked("songCustom")) document.getElementById("songCustom").value = "";
+      if(document.getElementById("weirdnessLevel") && !isFieldLocked("weirdnessLevel")) document.getElementById("weirdnessLevel").selectedIndex = 0;
+      if(document.getElementById("styleInfluence") && !isFieldLocked("styleInfluence")) document.getElementById("styleInfluence").selectedIndex = 0;
+      if(document.getElementById("audioInfluence") && !isFieldLocked("audioInfluence")) document.getElementById("audioInfluence").selectedIndex = 0;
+      document.getElementById("photoPrompt").value = "";
+      document.getElementById("videoPrompt").value = "";
+      document.getElementById("songPrompt").value = "";
+      if(document.getElementById("marketingPrompt")) document.getElementById("marketingPrompt").value = "";
+      if(document.getElementById("variationPrompt")) document.getElementById("variationPrompt").value = "";
+      document.getElementById("outputMode").value = "Both Photo and Video";
+    }
+
+    function joinNice(arr){
+      if (!arr || !arr.length) return "";
+      if (arr.length === 1) return arr[0];
+      if (arr.length === 2) return arr[0] + " and " + arr[1];
+      return arr.slice(0, -1).join(", ") + ", and " + arr[arr.length - 1];
+    }
+
+    function sentence(label, value){
+      return value ? `${label} ${value}.` : "";
+    }
+
+    function generatePrompts(){
+      const mainHero = getSingle("mainHero");
+      const supportingFigures = getMulti("supportingFigures");
+      const representation = getMulti("representation");
+      const emotion = getMulti("emotion");
+      const heroPose = getSingle("heroPose");
+      const composition = getSingle("composition");
+      const historical = getMulti("historical");
+      const symbolic = getMulti("symbolic");
+      const floral = getMulti("floral");
+      const backgroundStyle = getSingle("backgroundStyle");
+      const colorPalette = getSingle("colorPalette");
+      const lightingStyle = getSingle("lightingStyle");
+      const shadowControl = getSingle("shadowControl");
+      const textureFinish = getMulti("textureFinish");
+      const typographyStyle = getSingle("typographyStyle");
+      const cameraShot = getSingle("cameraShot");
+      const cameraAngle = getSingle("cameraAngle");
+      const lensStyle = getSingle("lensStyle");
+      const cameraMotion = getSingle("cameraMotion");
+      const editStyle = getSingle("editStyle");
+      const scenePacing = getSingle("scenePacing");
+      const empowermentTheme = getMulti("empowermentTheme");
+      const communityTheme = getMulti("communityTheme");
+      const artStyleBlend = getMulti("artStyleBlend");
+      const mainHeadline = document.getElementById("mainHeadline").value.trim();
+      const supportingQuote = document.getElementById("supportingQuote").value.trim();
+      const extraDetails = document.getElementById("extraDetails").value.trim();
+      const outputMode = document.getElementById("outputMode").value;
+      const songGenres = getMusicGenres();
+      const songCustom = document.getElementById("songCustom") ? document.getElementById("songCustom").value.trim() : "";
+      const weirdnessLevel = document.getElementById("weirdnessLevel") ? document.getElementById("weirdnessLevel").value : "";
+      const styleInfluence = document.getElementById("styleInfluence") ? document.getElementById("styleInfluence").value : "";
+      const audioInfluence = document.getElementById("audioInfluence") ? document.getElementById("audioInfluence").value : "";
+
+      const smartBackgroundNote = backgroundStyle
+        ? `Use a background that suits the women’s empowerment subject matter and supports the chosen environment: ${backgroundStyle}`
+        : `Use a background suitable for women’s empowerment, history, sisterhood, beauty, activism, and premium collage storytelling`;
+
+      const photoPrompt = [
+        `Create an epic, museum-worthy International Women’s Day collage poster with a bold editorial fine-art aesthetic. The image must feel scroll-stopping, emotionally powerful, premium, symbolic, culturally rich, and beautifully composed.`,
+        mainHero ? `Feature ${mainHero.toLowerCase()} as the main hero focus.` : "",
+        supportingFigures.length ? `Include supporting figures such as ${joinNice(supportingFigures).toLowerCase()}.` : "",
+        representation.length ? `Representation focus: ${joinNice(representation).toLowerCase()}.` : "",
+        emotion.length ? `Facial expression and emotional tone: ${joinNice(emotion).toLowerCase()}.` : "",
+        heroPose ? `Hero pose: ${heroPose.toLowerCase()}.` : "",
+        composition ? `Composition style: ${composition.toLowerCase()}.` : "",
+        historical.length ? `Layer in historical and archival elements including ${joinNice(historical).toLowerCase()}.` : "",
+        symbolic.length ? `Add symbolic elements such as ${joinNice(symbolic).toLowerCase()}.` : "",
+        floral.length ? `Include floral and decorative elements such as ${joinNice(floral).toLowerCase()}.` : "",
+        smartBackgroundNote + ".",
+        colorPalette ? `Color palette: ${colorPalette.toLowerCase()}.` : "",
+        lightingStyle ? `Lighting style: ${lightingStyle.toLowerCase()}.` : "",
+        shadowControl ? `Light and shadow treatment: ${shadowControl.toLowerCase()}.` : "",
+        textureFinish.length ? `Texture and finish: ${joinNice(textureFinish).toLowerCase()}.` : "",
+        typographyStyle ? `Typography style: ${typographyStyle.toLowerCase()}.` : "",
+        mainHeadline ? `Primary headline text: "${mainHeadline}".` : "",
+        supportingQuote ? `Supporting quote text: "${supportingQuote}".` : "",
+        cameraShot ? `Shot type: ${cameraShot.toLowerCase()}.` : "",
+        cameraAngle ? `Camera angle: ${cameraAngle.toLowerCase()}.` : "",
+        lensStyle ? `Lens and depth style: ${lensStyle.toLowerCase()}.` : "",
+        empowermentTheme.length ? `Empowerment themes: ${joinNice(empowermentTheme).toLowerCase()}.` : "",
+        communityTheme.length ? `Community themes: ${joinNice(communityTheme).toLowerCase()}.` : "",
+        artStyleBlend.length ? `Blend these art styles: ${joinNice(artStyleBlend).toLowerCase()}.` : "",
+        extraDetails ? `Extra custom details: ${extraDetails}.` : "",
+        `Each render must feature a uniquely distinct face, pose, and styling while maintaining the same overall aesthetic, emotional tone, and design language.`,
+        `Avoid duplicate faces, repetitive poses, generic styling, muddy composition, weak typography, cluttered layering, or random backgrounds that do not support the subject matter.`,
+        `Ultra-detailed, emotionally powerful, beautifully composed, layered mixed-media storytelling, scroll-stopping, premium design, museum-worthy, gallery-quality, poster-worthy masterpiece.`
+      ].filter(Boolean).join(" ");
+
+      const videoPrompt = [
+        `Create a cinematic International Women’s Day collage video concept and generation script based on a premium museum-worthy editorial poster aesthetic.`,
+        `The final video should feel powerful, emotional, stylish, symbolic, and impossible to scroll past.`,
+        mainHero ? `Main hero focus: ${mainHero.toLowerCase()}.` : "",
+        supportingFigures.length ? `Supporting figures: ${joinNice(supportingFigures).toLowerCase()}.` : "",
+        representation.length ? `Representation focus: ${joinNice(representation).toLowerCase()}.` : "",
+        emotion.length ? `Emotional tone: ${joinNice(emotion).toLowerCase()}.` : "",
+        heroPose ? `Lead pose or dominant body language: ${heroPose.toLowerCase()}.` : "",
+        composition ? `Overall visual composition: ${composition.toLowerCase()}.` : "",
+        historical.length ? `Historical layers to reveal through transitions: ${joinNice(historical).toLowerCase()}.` : "",
+        symbolic.length ? `Symbolic visual motifs: ${joinNice(symbolic).toLowerCase()}.` : "",
+        floral.length ? `Decorative floral motifs: ${joinNice(floral).toLowerCase()}.` : "",
+        smartBackgroundNote + ".",
+        colorPalette ? `Color palette: ${colorPalette.toLowerCase()}.` : "",
+        lightingStyle ? `Lighting direction: ${lightingStyle.toLowerCase()}.` : "",
+        shadowControl ? `Shadow treatment: ${shadowControl.toLowerCase()}.` : "",
+        textureFinish.length ? `Surface and texture language: ${joinNice(textureFinish).toLowerCase()}.` : "",
+        typographyStyle ? `Typography treatment: ${typographyStyle.toLowerCase()}.` : "",
+        mainHeadline ? `On-screen headline: "${mainHeadline}".` : "",
+        supportingQuote ? `On-screen supporting line: "${supportingQuote}".` : "",
+        cameraShot ? `Core framing: ${cameraShot.toLowerCase()}.` : "",
+        cameraAngle ? `Core angle: ${cameraAngle.toLowerCase()}.` : "",
+        lensStyle ? `Lens mood: ${lensStyle.toLowerCase()}.` : "",
+        cameraMotion ? `Camera motion: ${cameraMotion.toLowerCase()}.` : "",
+        editStyle ? `Editing style: ${editStyle.toLowerCase()}.` : "",
+        scenePacing ? `Scene pacing: ${scenePacing.toLowerCase()}.` : "",
+        empowermentTheme.length ? `Core empowerment themes: ${joinNice(empowermentTheme).toLowerCase()}.` : "",
+        communityTheme.length ? `Core community themes: ${joinNice(communityTheme).toLowerCase()}.` : "",
+        artStyleBlend.length ? `Blend these art directions: ${joinNice(artStyleBlend).toLowerCase()}.` : "",
+        extraDetails ? `Extra creative direction: ${extraDetails}.` : "",
+        `Structure the video as a premium short-form visual script with an opening hook, layered reveal of women, historical collage transitions, symbolic cutaways, statement typography moments, emotional rise, and a final iconic ending frame.`,
+        `Make every generated woman visually distinct with a different face, pose, outfit styling, and micro-expression, while preserving the same overall aesthetic world, palette, and emotional direction.`,
+        `Include scene prompts for: opening hero reveal, supportive community moments, archival transition layer, symbolic beauty close-up, typography hit, and final poster-like freeze frame.`,
+        `The final result should feel like a luxury campaign trailer, museum exhibition teaser, and feminist tribute film all in one.`,
+        `Ultra-detailed, emotionally powerful, beautifully composed, layered mixed-media storytelling, scroll-stopping, premium design, museum-worthy, gallery-quality, poster-worthy masterpiece.`
+      ].filter(Boolean).join(" ");
+
+      const songPrompt = [
+        `SOLO JINGLE + LYRIC PACK FOR WOMEN’S DAY`,
+        mainHeadline ? `Theme Title: ${mainHeadline}` : `Theme Title: Women’s Day Empowerment`,
+        supportingQuote ? `Message: ${supportingQuote}` : "",
+        emotion.length ? `Emotional Tone: ${joinNice(emotion)}.` : "",
+        empowermentTheme.length ? `Empowerment Themes: ${joinNice(empowermentTheme)}.` : "",
+        communityTheme.length ? `Community Themes: ${joinNice(communityTheme)}.` : "",
+        colorPalette ? `Mood Colors: ${colorPalette}.` : "",
+        artStyleBlend.length ? `Creative Style Influence: ${joinNice(artStyleBlend)}.` : "",
+        songGenres.length ? `Genre Direction: ${joinNice(songGenres)}.` : `Genre Direction: Pop anthem, gospel-pop, cinematic soul, luxury R&B, house glam, spoken word anthem, or orchestral empowerment.`,
+        songCustom ? `Custom Song Direction: ${songCustom}.` : "",
+        weirdnessLevel ? `Weirdness: ${weirdnessLevel}.` : "",
+        styleInfluence ? `Style Influence: ${styleInfluence}.` : "",
+        audioInfluence ? `Audio Influence: ${audioInfluence}.` : "",
+        ``,
+        `30-SECOND JINGLE LYRICS:`,
+        mainHeadline ? `${mainHeadline}, rise up bright,` : `Women rise up, shine so bright,`,
+        `Power in our hearts tonight,`,
+        supportingQuote ? `${supportingQuote}, strong and true,` : `Strong and brilliant through and through,`,
+        `Women’s Day, the world needs you.`,
+        ``,
+        `1-MINUTE SONG LYRICS:`,
+        `Verse 1:`,
+        `She carries fire, she carries grace,`,
+        `She builds her dream and claims her space,`,
+        `With every step and every scar,`,
+        `She shows the world just who we are.`,
+        ``,
+        `Chorus:`,
+        mainHeadline ? `${mainHeadline}, let it shine,` : `Women’s Day, now let us shine,`,
+        `Bold and brilliant, hearts aligned,`,
+        `Rise together, voices strong,`,
+        `This is where we all belong.`,
+        ``,
+        `Verse 2:`,
+        `From those before to those right now,`,
+        `We lift each other, we make it proud,`,
+        `Through love and courage, hope and light,`,
+        `We turn the struggle into flight.`,
+        ``,
+        `Bridge:`,
+        supportingQuote ? `${supportingQuote}, hear it ring,` : `Hear our stories, hear us sing,`,
+        `Legacy in everything,`,
+        `Soft and fierce and standing tall,`,
+        `There is room for every call.`,
+        ``,
+        `GENERATION NOTES:`,
+        `Keep the vocal delivery solo, confident, emotional, clear, and powerful.`,
+        `You can freely shift the genre while keeping the same Women’s Day message and lyrical core.`
+      ].filter(Boolean).join("\n");
+
+      const marketingPrompt = [
+        `CAPTION SUGGESTIONS:`,
+        mainHeadline ? `1. ${mainHeadline} — built to stop the scroll and honor women with power, beauty, and legacy.` : `1. A scroll-stopping Women’s Day visual full of power, beauty, and legacy.`,
+        supportingQuote ? `2. ${supportingQuote} This is the kind of Women’s Day content that actually makes people feel something.` : `2. This is the kind of Women’s Day content that actually makes people feel something.`,
+        `3. Strong women. Bold stories. Premium visuals. That is the energy.`,
+        `4. If your content doesn’t move people, it gets skipped. This one is built to hit different.`,
+        ``,
+        `PRODUCT INFO SUGGESTIONS:`,
+        `• Instant download Women’s Day Prompt Generator for premium photo prompts, video scripts, and lyric generation.`,
+        `• Designed for creators who want scroll-stopping Women’s Day visuals with meaning, beauty, and emotional impact.`,
+        `• Great for social media campaigns, digital products, posters, promo art, tribute content, and themed launches.`,
+        `• Position this as a luxury creator tool, not a basic prompt sheet.`,
+        `• Best marketing angle: premium, symbolic, empowering, and ready-to-post.`,
+        ``,
+        `SELLING ANGLES:`,
+        `• Turn one idea into a photo prompt, video concept, lyrics, and promo copy fast.`,
+        `• Helps creators make Women’s Day content that looks polished and feels emotionally powerful.`,
+        `• Built for scroll-stopping campaigns, digital products, and brand visibility.`
+      ].filter(Boolean).join("\n");
+
+      const photoBox = document.getElementById("photoPrompt");
+      const videoBox = document.getElementById("videoPrompt");
+      const songBox = document.getElementById("songPrompt");
+      const marketingBox = document.getElementById("marketingPrompt");
+
+      if (outputMode === "Photo Prompt Only") {
+        photoBox.value = photoPrompt;
+        videoBox.value = "";
+        if (songBox) songBox.value = "";
+        if (marketingBox) marketingBox.value = "";
+      } else if (outputMode === "Video Script Prompt Only") {
+        photoBox.value = "";
+        videoBox.value = videoPrompt;
+        if (songBox) songBox.value = "";
+        if (marketingBox) marketingBox.value = "";
+      } else {
+        photoBox.value = photoPrompt;
+        videoBox.value = videoPrompt;
+        if (songBox) songBox.value = songPrompt;
+        if (marketingBox) marketingBox.value = marketingPrompt;
+      }
+    }
+
+    function copyText(id){
+      const el = document.getElementById(id);
+      if(!el.value.trim()){
+        alert("Nothing to copy yet.");
+        return;
+      }
+      el.select();
+      el.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(el.value).then(() => {
+        alert("Copied.");
+      }).catch(() => {
+        document.execCommand("copy");
+        alert("Copied.");
+      });
+    }
+
+    function selectOutput(id){
+      const el = document.getElementById(id);
+      el.focus();
+      el.select();
+      el.setSelectionRange(0, 99999);
+    }
+
+    function downloadText(id, filename){
+      const text = document.getElementById(id).value;
+      if(!text.trim()){
+        alert("Nothing to download yet.");
+        return;
+      }
+      const blob = new Blob([text], {type:"text/plain"});
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    }
+
+    initFields();
+    renderPromptHistory();
+  </script>
+</body>
+</html>
